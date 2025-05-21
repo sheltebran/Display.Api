@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "Python: Module",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": ["main:app","--reload","--port","7069","--host","localhost"]
+        }
+    ]
+}
