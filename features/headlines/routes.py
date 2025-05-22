@@ -35,7 +35,7 @@ async def create_headlines(sport_id: int):
     return {"headlines": "successful"} 
 
 # Route to list all headlines
-@router.get("/{league_id:int}/", response_model=List[dict])
+@router.get("/{league_id:int}/")
 async def list_headlines(league_id: int):
     headlines = await get_headlines_by_league(league_id)
     headline_dtos = map_headline_to_dto(headlines)

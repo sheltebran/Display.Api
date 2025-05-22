@@ -51,7 +51,7 @@ async def get_headlines_by_league(league_id: int):
         Tuple starting with string and followed by the Headline class.
     """
     
-    headlines = await get_all_headlines(league_id,10)
+    headlines = await get_all_headlines(league_id, 10)
 
     return headlines
     

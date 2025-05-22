@@ -1,9 +1,6 @@
 import os
 import psycopg2 
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-# from starlette.concurrency import run_in_threadpool
-
-
 
 async def initialize_database():
     await create_database_if_not_exists()
