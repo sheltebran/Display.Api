@@ -1,14 +1,12 @@
 # FastAPI app instantiation and startup
-
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from api.router import api_router
-from core.database import create_database_if_not_exists, create_headline_table
+from core.database import initialize_database
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    create_database_if_not_exists()
-    create_headline_table()
+    await initialize_database()
     yield
 
 app = FastAPI(

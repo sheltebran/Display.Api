@@ -1,8 +1,31 @@
 import os
 import psycopg2 
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+# from starlette.concurrency import run_in_threadpool
 
-def create_database_if_not_exists():
+async def initialize_database():
+    await create_database_if_not_exists()
+    await create_headlines_table_if_not_exists()
+    await create_created_sports_table_if_not_exists()
+    await create_created_leagues_table_if_not_exists()
+
+def get_connection():
+    """Get database connection
+
+    Returns
+    -------
+    connection
+        Service to enable processing of database calls
+    """    
+    return psycopg2.connect(
+        host="localhost",
+        database="displaydb",
+        user="test",
+        password=os.environ["DB_PASSWORD"],
+        port=5432
+    )
+
+async def create_database_if_not_exists():
     """Create database
 
     If this database does not exist, then create it
@@ -27,18 +50,13 @@ def create_database_if_not_exists():
     cur.close()
     conn.close()
 
-def create_headline_table():
-    """Create the headline table
+async def create_headlines_table_if_not_exists():
+    """Create the headlines table
 
     Create headlines table setting all column and string sizes
     """    
-    conn = psycopg2.connect(
-        host="localhost",
-        database="displaydb",
-        user="test",
-        password=os.environ["DB_PASSWORD"],
-        port=5432
-    )
+    conn = get_connection
+
     cur = conn.cursor()
     
     cur.execute("""
@@ -56,24 +74,42 @@ def create_headline_table():
     cur.close()
     conn.close()
 
-def get_connection():
-    """Get database connection
+async def create_created_sports_table_if_not_exists() -> None:
+        
+    conn = get_connection
 
-    Returns
-    -------
-    connection
-        Service to enable processing of database calls
-    """    
-    return psycopg2.connect(
-        host="localhost",
-        database="displaydb",
-        user="test",
-        password=os.environ["DB_PASSWORD"],
-        port=5432
-    )
+    cur = conn.cursor()
+    
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS created_sports (
+            created_sport_id SERIAL PRIMARY KEY
+            sport_id int,
+            name VARCHAR(100) NOT NULL,
+            event_date TIMESTAMP NOT NULL
+        );
+    """)
 
-"""
-if __name__ == "__main__":
-    create_database_if_not_exists()
-create_display_table()
-"""
+    conn.commit()
+    cur.close()
+    conn.close()
+
+async def create_created_leagues_table_if_not_exists():
+        
+    conn = get_connection
+
+    cur = conn.cursor()
+    
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS created_leagues (
+            created_league_id SERIAL PRIMARY KEY
+            league_id int,
+            name VARCHAR(50) NOT NULL,
+            url VARCHAR(500) NOT NULL,
+            sport_id int,
+            event_date TIMESTAMP NOT NULL
+        );
+    """)
+
+    conn.commit()
+    cur.close()
+    conn.close()

@@ -1,11 +1,12 @@
 # Business logic
 from core.database import get_connection
-from features.headlines.schemas import HeadlineCreate, Headline
+from features.headlines.models import Headline
+from features.headlines.schemas import HeadlineCreate
 from typing import List
-from repository import add_headline
+from repository import add_headline, get_leagues
 
 # Create new headlines
-async def create_headlines(season_id: int):
+async def create_headlines(sport_id: int):
     """Request to get and create new headlines
 
     This function accesses a sports headlines feed, parses the data
@@ -13,8 +14,8 @@ async def create_headlines(season_id: int):
 
     Parameters
     ----------
-    season_id : int
-        Id for the season and for accessing the different leagues and urls
+    sport_id : int
+        Id for the sport and for accessing the different leagues and urls
         for the sports feed.
 
     Returns
@@ -23,14 +24,21 @@ async def create_headlines(season_id: int):
         A true setting indicates the creation was successful.
     """    
 
-    headline = HeadlineCreate(1, "Test", "Test", "Test", "2024-10-10T00:00:00")
+    leagues = await get_leagues(sport_id)
 
-    id = await add_headline(headline)
+    result = True
 
-    return id
+    for league in leagues
+        headline = HeadlineCreate("Test", "Test", "Test", "2024-10-10T00:00:00", league)
+        row = await add_headline(headline)
+        if row is None:
+            result = False
+            break
+
+    return result
 
 # Get all headlines listed in the database
-def get_all_headlines():
+async def get_all_headlines():
     """Get all headlines
 
     Function to extract all headlines in the database and send back
@@ -57,5 +65,5 @@ def get_all_headlines():
     return headline_list
 
 # Import data from sport news source
-def import_headlines(season_id: int):
+async def import_headlines(season_id: int):
     
