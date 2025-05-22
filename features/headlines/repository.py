@@ -1,8 +1,9 @@
 # DB access layer
-from core.database import get_connection
+from core.database import get_db_config
+from datetime import datetime
 from features.headlines.models import Headline
 from features.headlines.schemas import HeadlineCreate
-from datetime import datetime
+import psycopg2 
 from typing import Any, List
 
 async def add_headline(headline: HeadlineCreate):
@@ -16,11 +17,15 @@ async def add_headline(headline: HeadlineCreate):
         Returns an integer value. If the value is 0
         or less then the operation failed
     """
-    conn = get_connection()
+    config = get_db_config()
+    
+    with psycopg2.connect(**config) as conn:
+        conn.autocommit = True
+        cur = conn.cursor()
 
-    cur = conn.cursor()
+    pub_date = datetime.strptime(headline.pub_date, '%m/%d/%Y %H:%M:%S')
 
-    HEADLINE_INSERT = f"INSERT INTO headlines (headline_type, heading, story, link, pub_date) VALUES ({headline.heading}, {headline.story}, {headline.link}, {datetime.strptime(headline.pub_date, '%m/%d/%y %H:%M:%S'), headline.league_id});RETURNING headline_id;"
+    HEADLINE_INSERT = f"INSERT INTO headlines (heading, story, link, pub_date, league_id) VALUES ('{headline.heading}', '{headline.story}', '{headline.link}', '{pub_date}', {headline.league_id}) RETURNING headline_id;"
 
     cur.execute(HEADLINE_INSERT)
     
@@ -47,8 +52,11 @@ async def get_all_headlines(league_id: int, limit: int):
     List of Headlines
         Return a list of headlines for that league
     """
-    conn = get_connection()
-    cur = conn.cursor()
+    config = get_db_config()
+    
+    with psycopg2.connect(**config) as conn:
+        conn.autocommit = True
+        cur = conn.cursor()
     
     cur.execute(f"SELECT headline_id, heading, story, link, pub_date, league_id FROM headlines WHERE league_id = {league_id} ORDER BY pub_date LIMIT {limit}")
     
@@ -71,11 +79,13 @@ async def get_leagues(sport_id: int):
     List[int]
         A list of integer values indicating the id for each of the leagues
     """
-    conn = get_connection()
+    config = get_db_config()
+    
+    with psycopg2.connect(**config) as conn:
+        conn.autocommit = True
+        cur = conn.cursor()
 
-    cur = conn.cursor()
-
-    GET_LEAGUES=f"SELECT league_id FROM LEAGUES WHERE sport_id={sport_id}"
+    GET_LEAGUES=f"SELECT league_id FROM created_leagues WHERE sport_id={sport_id}"
 
     cur.execute(GET_LEAGUES)
 

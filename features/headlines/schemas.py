@@ -3,9 +3,10 @@ from dataclasses import dataclass
 from typing import Annotated
 from pydantic import BaseModel, AfterValidator
 from datetime import datetime
-from validators import is_greater_than_zero, is_not_null_or_empty, validate_datetime_string
+from features.headlines.validators import is_greater_than_zero, is_not_null_or_empty, validate_datetime_string
 
-class HeadlineCreate(BaseModel):
+@dataclass
+class HeadlineCreate:
     heading: Annotated[str, AfterValidator(is_not_null_or_empty)]
     story: Annotated[str, AfterValidator(is_not_null_or_empty)]
     link: Annotated[str, AfterValidator(is_not_null_or_empty)]

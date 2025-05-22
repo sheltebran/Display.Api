@@ -3,13 +3,15 @@ import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 # from starlette.concurrency import run_in_threadpool
 
+
+
 async def initialize_database():
     await create_database_if_not_exists()
     await create_headlines_table_if_not_exists()
     await create_created_sports_table_if_not_exists()
     await create_created_leagues_table_if_not_exists()
 
-def get_connection():
+def get_db_config():
     """Get database connection
 
     Returns
@@ -17,24 +19,28 @@ def get_connection():
     connection
         Service to enable processing of database calls
     """    
-    return psycopg2.connect(
-        host="localhost",
-        database="displaydb",
-        user="test",
-        password=os.environ["DB_PASSWORD"],
-        port=5432
-    )
+
+    return {
+        "host": "localhost",
+        "dbname": "displaydb",
+        "user": "test",
+        "password": os.environ.get("DB_PASSWORD"),
+        "port": 5432
+    }
 
 async def create_database_if_not_exists():
     """Create database
 
     If this database does not exist, then create it
     """
+
+    pwd = os.environ.get("MAIN_DB_PASSWORD")
+
     conn = psycopg2.connect(
         host="localhost",
-        database="postgres",  # connect to default DB
+        dbname="postgres",  # connect to default DB
         user="postgres",
-        password=os.environ["MAIN_DB_PASSWORD"],
+        password=pwd,
         port=5432
     )
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)  # Required for CREATE DATABASE
@@ -55,9 +61,11 @@ async def create_headlines_table_if_not_exists():
 
     Create headlines table setting all column and string sizes
     """    
-    conn = get_connection
+    config = get_db_config()
 
-    cur = conn.cursor()
+    with psycopg2.connect(**config) as conn:
+        conn.autocommit = True
+        cur = conn.cursor()
     
     cur.execute("""
         CREATE TABLE IF NOT EXISTS headlines (
@@ -76,18 +84,17 @@ async def create_headlines_table_if_not_exists():
 
 async def create_created_sports_table_if_not_exists() -> None:
         
-    conn = get_connection
-
-    cur = conn.cursor()
+    config = get_db_config()
     
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS created_sports (
-            created_sport_id SERIAL PRIMARY KEY
+    with psycopg2.connect(**config) as conn:
+        conn.autocommit = True
+        cur = conn.cursor()
+    
+    cur.execute("""CREATE TABLE IF NOT EXISTS created_sports (
+            created_sport_id SERIAL PRIMARY KEY,
             sport_id int,
             name VARCHAR(100) NOT NULL,
-            event_date TIMESTAMP NOT NULL
-        );
-    """)
+            event_date TIMESTAMP NOT NULL);""")
 
     conn.commit()
     cur.close()
@@ -95,20 +102,19 @@ async def create_created_sports_table_if_not_exists() -> None:
 
 async def create_created_leagues_table_if_not_exists():
         
-    conn = get_connection
-
-    cur = conn.cursor()
+    config = get_db_config()
     
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS created_leagues (
-            created_league_id SERIAL PRIMARY KEY
+    with psycopg2.connect(**config) as conn:
+        conn.autocommit = True
+        cur = conn.cursor()
+    
+    cur.execute("""CREATE TABLE IF NOT EXISTS created_leagues (
+            created_league_id SERIAL PRIMARY KEY,
             league_id int,
             name VARCHAR(50) NOT NULL,
             url VARCHAR(500) NOT NULL,
             sport_id int,
-            event_date TIMESTAMP NOT NULL
-        );
-    """)
+            event_date TIMESTAMP NOT NULL);""")
 
     conn.commit()
     cur.close()
