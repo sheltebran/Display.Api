@@ -3,6 +3,8 @@ import json
 from datetime import datetime
 from features.leagues.repository import add_created_league
 from features.leagues.schemas import LeagueToBeCreated
+from features.user_teams.repository import add_created_user_team
+from features.user_teams.schemas import UserTeamToBeCreated
 
 async def process_message(message: aio_pika.abc.AbstractIncomingMessage, exchange_name: str):
     async with message.process():  # Auto-acknowledgment on success
