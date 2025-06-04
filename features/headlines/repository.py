@@ -1,9 +1,9 @@
 # DB access layer
+import psycopg2
 from core.database import get_db_config
 from datetime import datetime
 from features.headlines.models import Headline
 from features.headlines.schemas import HeadlineCreate
-import psycopg2 
 from typing import Any, List
 
 async def add_headline(headline: HeadlineCreate):
@@ -25,9 +25,7 @@ async def add_headline(headline: HeadlineCreate):
 
     pub_date = datetime.strptime(headline.pub_date, '%m/%d/%Y %H:%M:%S')
 
-    HEADLINE_INSERT = f"INSERT INTO headlines (heading, story, link, pub_date, league_id) VALUES ('{headline.heading}', '{headline.story}', '{headline.link}', '{pub_date}', {headline.league_id}) RETURNING headline_id;"
-
-    cur.execute(HEADLINE_INSERT)
+    cur.execute(f"INSERT INTO headlines (heading, story, link, pub_date, league_id) VALUES ('{headline.heading}', '{headline.story}', '{headline.link}', '{pub_date}', {headline.league_id}) RETURNING headline_id;")
     
     row: tuple[Any, ...] | None = cur.fetchone()
 
@@ -66,35 +64,3 @@ async def get_all_headlines(league_id: int, limit: int):
 
     return [Headline(*item) for item in headline_list]
 
-async def get_leagues(sport_id: int):
-    """Get all leagues for a sport
-
-    Parameters
-    ----------
-    sport_id : int
-        The sports id that will be used to acquire all leagues
-
-    Returns
-    -------
-    List[int]
-        A list of integer values indicating the id for each of the leagues
-    """
-    config = get_db_config()
-    
-    with psycopg2.connect(**config) as conn:
-        conn.autocommit = True
-        cur = conn.cursor()
-
-    GET_LEAGUES=f"SELECT league_id FROM created_leagues WHERE sport_id={sport_id}"
-
-    cur.execute(GET_LEAGUES)
-
-    # Read the list of leagues ids
-    rows = cur.fetchall()
-    leagues = [row[0] for row in rows if isinstance(row[0], int)]
-
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    return leagues

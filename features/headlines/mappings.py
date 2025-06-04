@@ -2,7 +2,7 @@ from features.headlines.models import Headline
 from features.headlines.schemas import HeadlineDto
 from typing import List
 
-def map_headline_to_dto(headlines: List[Headline]):
+def map_headline_to_dtos(headlines: List[Headline]):
     """Map headlines to DTOs
     Function to map the headlines to the DTOs for sending back to the caller.
 

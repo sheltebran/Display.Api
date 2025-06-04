@@ -1,12 +1,15 @@
 # FastAPI app instantiation and startup
+import asyncio
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from api.router import api_router
 from core.database import initialize_database
+from events.rabbitmq_handler import rabbitmq_listener
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await initialize_database()
+    asyncio.create_task(rabbitmq_listener())
     yield
 
 app = FastAPI(

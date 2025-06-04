@@ -7,6 +7,7 @@ async def initialize_database():
     await create_headlines_table_if_not_exists()
     await create_created_sports_table_if_not_exists()
     await create_created_leagues_table_if_not_exists()
+    await create_created_user_teams_table_if_not_exists()
 
 def get_db_config():
     """Get database connection
@@ -111,6 +112,27 @@ async def create_created_leagues_table_if_not_exists():
             name VARCHAR(50) NOT NULL,
             url VARCHAR(500) NOT NULL,
             sport_id int,
+            event_date TIMESTAMP NOT NULL);""")
+
+    conn.commit()
+    cur.close()
+    conn.close()
+
+async def create_created_user_teams_table_if_not_exists():
+        
+    config = get_db_config()
+    
+    with psycopg2.connect(**config) as conn:
+        conn.autocommit = True
+        cur = conn.cursor()
+    
+    cur.execute("""CREATE TABLE IF NOT EXISTS created_user_teams (
+            created_user_team_id SERIAL PRIMARY KEY,
+            user_team_id UUID NOT NULL,
+            name VARCHAR(100) NOT NULL,
+            is_active BOOLEAN NOT NULL DEFAULT TRUE,
+            is_paid BOOLEAN NOT NULL DEFAULT FALSE,
+            season_id UUID NOT NULL,
             event_date TIMESTAMP NOT NULL);""")
 
     conn.commit()

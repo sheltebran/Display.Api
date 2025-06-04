@@ -1,9 +1,9 @@
 # Pydantic request/response DTOs
 from dataclasses import dataclass
-from typing import Annotated
-from pydantic import BaseModel, AfterValidator
 from datetime import datetime
 from features.headlines.validators import is_greater_than_zero, is_not_null_or_empty, validate_datetime_string
+from pydantic import AfterValidator
+from typing import Annotated
 
 @dataclass
 class HeadlineCreate:
@@ -13,6 +13,7 @@ class HeadlineCreate:
     pub_date: Annotated[str, AfterValidator(validate_datetime_string)]
     league_id: Annotated[int, AfterValidator(is_greater_than_zero)]
 
+@dataclass
 class HeadlineResponse(HeadlineCreate):
     headline_id: int
 

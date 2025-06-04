@@ -1,12 +1,11 @@
 # FastAPI APIRouter
 from fastapi import APIRouter, HTTPException
-from features.headlines.mappings import map_headline_to_dto
+from features.headlines.mappings import map_headline_to_dtos
 from features.headlines.services import create_sport_headlines, get_headlines_by_league
 from typing import List
 
 router = APIRouter(prefix="/headlines", tags=["Headlines"])
 
-# Route to add new headlines
 @router.post("/{sport_id:int}/")
 async def create_headlines(sport_id: int):
     """Create headlines for a sport
@@ -34,9 +33,24 @@ async def create_headlines(sport_id: int):
     
     return {"headlines": "successful"} 
 
-# Route to list all headlines
 @router.get("/{league_id:int}/")
 async def list_headlines(league_id: int):
+    """List all headlines for a league
+    Function to list all headlines for a league. The league id is passed
+    in the URL and the function will extract all headlines for that league
+
+    Parameters
+    ----------
+    league_id : int
+        Id for the league to be used to extract all headlines
+        for that league. The league id is passed in the URL.
+
+        Returns
+    -------
+    List[Headline]
+        List of the headlines for that league. The list is a list of
+        tuples starting with a string and followed by the Headline class.
+    """
     headlines = await get_headlines_by_league(league_id)
-    headline_dtos = map_headline_to_dto(headlines)
+    headline_dtos = map_headline_to_dtos(headlines)
     return {"headlines": headline_dtos}

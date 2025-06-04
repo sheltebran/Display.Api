@@ -1,7 +1,8 @@
 # Business logic
+from features.headlines.repository import add_headline, get_all_headlines
+from features.leagues.repository import get_league_ids
 from features.headlines.schemas import HeadlineCreate
 from typing import List
-from features.headlines.repository import add_headline, get_leagues, get_all_headlines
 
 # Create new headlines
 async def create_sport_headlines(sport_id: int):
@@ -22,15 +23,15 @@ async def create_sport_headlines(sport_id: int):
         A true setting indicates the creation was successful.
     """    
 
-    leagues = await get_leagues(sport_id)
+    league_ids = await get_league_ids(sport_id)
 
-    if not leagues:
+    if not league_ids:
         return False
     
     result = True
 
-    for league in leagues:
-        headline = HeadlineCreate("Test", "Test", "Test", "05/22/2025 00:00:00", league)
+    for league_id in league_ids:
+        headline = HeadlineCreate("Test", "Test", "Test", "05/22/2025 00:00:00", league_id)
         row = await add_headline(headline)
         if row is None:
             result = False
