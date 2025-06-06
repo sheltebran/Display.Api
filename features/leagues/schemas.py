@@ -1,10 +1,11 @@
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict
 
+def camel_to_snake(s):
+    return ''.join(['_' + c.lower() if c.isupper() else c for c in s]).lstrip('_')
+
 class LeagueToBeCreated(BaseModel):
     """Schema for a created league."""
-
-    model_config = ConfigDict(populate_by_name=True)
 
     league_id: int
     name: str
@@ -12,19 +13,6 @@ class LeagueToBeCreated(BaseModel):
     sport_id: int
     status: int
     event_date: datetime
-
-    @classmethod
-    def aliases(cls):
-        """Return a dictionary of field aliases."""
-
-        return {
-            "league_id": "leagueId",
-            "name": "name",
-            "url": "url",
-            "sport_id": "sportId",
-            "status": "status",
-            "event_date": "eventDate"
-        }
     
 class CreatedLeague(BaseModel):
     """Schema for a created league with an auto-generated ID."""

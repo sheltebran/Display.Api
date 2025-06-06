@@ -20,7 +20,7 @@ def get_db_config():
 
     return {
         "host": "localhost",
-        "dbname": "displaydb",
+        "dbname": "display_db",
         "user": "test",
         "password": os.environ.get("DB_PASSWORD"),
         "port": 5432
@@ -45,11 +45,11 @@ async def create_database_if_not_exists():
     cur = conn.cursor()
 
     # Check if database exists
-    cur.execute("SELECT 1 FROM pg_database WHERE datname = 'displaydb'")
+    cur.execute("SELECT 1 FROM pg_database WHERE datname = 'display_db'")
     exists = cur.fetchone()
 
     if not exists:
-        cur.execute("CREATE DATABASE displaydb OWNER test")
+        cur.execute("CREATE DATABASE display_db OWNER test")
 
     cur.close()
     conn.close()
