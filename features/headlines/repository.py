@@ -17,6 +17,7 @@ async def add_headline(headline: HeadlineCreate):
         Returns an integer value. If the value is 0
         or less then the operation failed
     """
+    
     config = get_db_config()
     
     with psycopg2.connect(**config) as conn:

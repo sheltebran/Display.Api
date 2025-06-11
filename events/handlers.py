@@ -23,7 +23,7 @@ connection = pika.BlockingConnection(connection_params)
 channel = connection.channel()
 
 # Declare the fanout exchanges
-exchanges = ['league_exchange', 'user_team_exchange', 'week_exchange', 'pick_echange', 'default_pick_exchange', 'ranking_exchange', 'results_exchange']
+exchanges = ['league_exchange', 'user_team_exchange', 'week_exchange', 'pick_exchange', 'default_pick_exchange', 'ranking_exchange', 'results_exchange']
 queues = []
 
 for exchange in exchanges:

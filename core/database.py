@@ -1,4 +1,5 @@
 import os
+import asyncpg
 import psycopg2 
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
@@ -8,6 +9,7 @@ async def initialize_database():
     await create_created_sports_table_if_not_exists()
     await create_created_leagues_table_if_not_exists()
     await create_created_user_teams_table_if_not_exists()
+
 
 def get_db_config():
     """Get database connection
@@ -20,7 +22,7 @@ def get_db_config():
 
     return {
         "host": "localhost",
-        "dbname": "display_db",
+        "database": "display_db",
         "user": "test",
         "password": os.environ.get("DB_PASSWORD"),
         "port": 5432
@@ -55,86 +57,110 @@ async def create_database_if_not_exists():
     conn.close()
 
 async def create_headlines_table_if_not_exists():
-    """Create the headlines table
+    """Create the headlines table""" 
 
-    Create headlines table setting all column and string sizes
-    """    
     config = get_db_config()
 
-    with psycopg2.connect(**config) as conn:
-        conn.autocommit = True
-        cur = conn.cursor()
-    
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS headlines (
-            headline_id SERIAL PRIMARY KEY,
-            heading VARCHAR(200) NOT NULL,
-            story VARCHAR(500) NOT NULL,
-            link VARCHAR(500) NOT NULL,
-            pub_date TIMESTAMP NOT NULL,
-            league_id INT
-        );
-    """)
+    try:
+        # Connect to the database
+        conn = await asyncpg.connect(**config)
 
-    conn.commit()
-    cur.close()
-    conn.close()
+        command = """
+            CREATE TABLE IF NOT EXISTS headlines (
+                headline_id SERIAL PRIMARY KEY,
+                heading VARCHAR(200) NOT NULL,
+                story VARCHAR(500) NOT NULL,
+                link VARCHAR(500) NOT NULL,
+                pub_date TIMESTAMPTZ NOT NULL,
+                league_id INT);
+        """
 
+        await conn.execute(command)
+
+        await conn.close()
+
+    except Exception as e:
+        print(f"An error occurred while connecting to the database: {e}")
+      
 async def create_created_sports_table_if_not_exists() -> None:
+    """Create the created_sports table"""
         
     config = get_db_config()
-    
-    with psycopg2.connect(**config) as conn:
-        conn.autocommit = True
-        cur = conn.cursor()
-    
-    cur.execute("""CREATE TABLE IF NOT EXISTS created_sports (
-            created_sport_id SERIAL PRIMARY KEY,
-            sport_id int,
-            name VARCHAR(100) NOT NULL,
-            event_date TIMESTAMP NOT NULL);""")
 
-    conn.commit()
-    cur.close()
-    conn.close()
+    try:
+        # Connect to the database
+        conn = await asyncpg.connect(**config)
+
+        command = """
+            CREATE TABLE IF NOT EXISTS created_sports (
+                created_sport_id SERIAL PRIMARY KEY,
+                sport_id int,
+                name VARCHAR(100) NOT NULL,
+                event_date TIMESTAMPTZ NOT NULL);
+        """
+
+        await conn.execute(command)
+
+        await conn.close()
+
+    except Exception as e:
+        print(f"An error occurred while connecting to the database: {e}")
 
 async def create_created_leagues_table_if_not_exists():
+    """Create the created_leagues table"""
         
     config = get_db_config()
-    
-    with psycopg2.connect(**config) as conn:
-        conn.autocommit = True
-        cur = conn.cursor()
-    
-    cur.execute("""CREATE TABLE IF NOT EXISTS created_leagues (
-            created_league_id SERIAL PRIMARY KEY,
-            league_id int,
-            name VARCHAR(50) NOT NULL,
-            url VARCHAR(500) NOT NULL,
-            sport_id int,
-            event_date TIMESTAMP NOT NULL);""")
 
-    conn.commit()
-    cur.close()
-    conn.close()
+    try:
+        # Connect to the database
+        conn = await asyncpg.connect(**config)
+
+        command = """
+            CREATE TABLE IF NOT EXISTS created_leagues (
+                created_league_id SERIAL PRIMARY KEY,
+                league_id int,
+                name VARCHAR(50) NOT NULL,
+                url VARCHAR(500) NOT NULL,
+                sport_id int,
+                event_date TIMESTAMPTZ NOT NULL);
+        """
+
+        await conn.execute(command)
+
+        await conn.close()
+
+    except Exception as e:
+        print(f"An error occurred while connecting to the database: {e}")
 
 async def create_created_user_teams_table_if_not_exists():
+    """Create the created_user_teams table"""
         
     config = get_db_config()
     
-    with psycopg2.connect(**config) as conn:
-        conn.autocommit = True
-        cur = conn.cursor()
-    
-    cur.execute("""CREATE TABLE IF NOT EXISTS created_user_teams (
-            created_user_team_id SERIAL PRIMARY KEY,
-            user_team_id UUID NOT NULL,
-            name VARCHAR(100) NOT NULL,
-            is_active BOOLEAN NOT NULL DEFAULT TRUE,
-            is_paid BOOLEAN NOT NULL DEFAULT FALSE,
-            season_id UUID NOT NULL,
-            event_date TIMESTAMP NOT NULL);""")
+    try:
+        # Connect to the database
+        conn = await asyncpg.connect(**config)
 
-    conn.commit()
-    cur.close()
-    conn.close()
+        command = """
+            CREATE TABLE IF NOT EXISTS created_user_teams (
+                created_user_team_id SERIAL PRIMARY KEY,
+                user_team_id UUID NOT NULL,
+                name VARCHAR(100) NOT NULL,
+                starting_amount INT NOT NULL,
+                is_paid BOOLEAN NOT NULL DEFAULT FALSE,
+                payment_reference VARCHAR(50) NULL,
+                is_active BOOLEAN NOT NULL DEFAULT TRUE,
+                slogan VARCHAR(100) NULL,
+                email VARCHAR(100) NOT NULL,
+                season_id UUID NOT NULL,
+                user_id UUID NOT NULL,
+                event_date TIMESTAMPTZ NOT NULL);
+        """
+
+        await conn.execute(command)
+
+        await conn.close()
+
+    except Exception as e:
+        print(f"An error occurred while connecting to the database: {e}")
+
