@@ -1,3 +1,5 @@
+from datetime import timezone
+from dateutil.parser import parse
 from features.user_teams.schemas import CreatedUserTeam
 from typing import List
 
@@ -15,6 +17,14 @@ def map_to_created_user_team(user_team):
         A CreatedUserTeam object with the mapped data.
     """
 
+    event_date_str = user_team["event_date"]
+
+    # Ensure it's timezone-aware
+    event_date = parse(event_date_str)
+
+    # Normalize to a proper UTC tzinfo (fixes compatibility with asyncpg/PostgreSQL)
+    event_date = event_date.astimezone(timezone.utc)
+
     created_user_team = CreatedUserTeam(
         created_user_team_id=0, 
         user_team_id=user_team["user_team_id"], 
@@ -27,7 +37,8 @@ def map_to_created_user_team(user_team):
         email=user_team["email"],
         season_id=user_team["season_id"],
         user_id=user_team["user_id"],
-        event_date=user_team["event_date"])
-    
+        event_date=event_date
+    )
+
     return created_user_team
 

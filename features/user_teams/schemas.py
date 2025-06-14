@@ -15,7 +15,7 @@ class UserTeamToBeCreated(BaseModel):
     season_id: str  # UUID as string
     user_id: str  # UUID as string
     status: str  # Assuming CreatedStatus is a string enum or similar
-    event_date: datetime
+    event_date: str
     
 class CreatedUserTeam(BaseModel):
     """Schema for a created league with an auto-generated ID."""
