@@ -1,6 +1,5 @@
 from core.date_helpers import format_date
 from features.leagues.schemas import CreatedLeague
-from typing import List
 
 def map_to_created_league(league):
     """Map a league dictionary to a CreatedLeague object.

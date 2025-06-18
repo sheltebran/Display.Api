@@ -2,7 +2,6 @@
 from fastapi import APIRouter, HTTPException
 from features.headlines.mappings import map_headline_to_dtos
 from features.headlines.services import create_sport_headlines, get_headlines_by_league
-from typing import List
 
 router = APIRouter(prefix="/headlines", tags=["Headlines"])
 

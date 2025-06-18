@@ -7,7 +7,7 @@ from core.database import initialize_database
 from events.rabbitmq_handler import rabbitmq_listener
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(_app: FastAPI):
     await initialize_database()
     asyncio.create_task(rabbitmq_listener())
     yield

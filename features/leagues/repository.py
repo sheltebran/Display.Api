@@ -41,8 +41,10 @@ async def delete_league(sport_id: int, name: str):
 
     Parameters
     ----------
-    league_id : int
-        The id of the league to be deleted
+    sport_id: int
+        The sport id of the league
+    name : str
+        THe name of the league
 
     Returns
     -------
@@ -83,8 +85,7 @@ async def get_league_ids(sport_id: int):
 
         # Read the league ids by sport_id
         result = await conn.execute(
-            "SELECT league_id FROM created_leagues WHERE sport_id = %s;", 
-            sport_id,
+            "SELECT league_id FROM created_leagues WHERE sport_id = $1;", sport_id,
         )
         
         await conn.close()

@@ -48,16 +48,17 @@ async def add_created_user_team(user_team: CreatedUserTeam):
 
     except Exception as e:
         print(f"Error inserting user team: {e}")
-        return 0
-    
+        return 0  
 
-async def delete_user_team(user_team_id: str):
+async def delete_user_team(name: str, season_id: str):
     """Delete a user team from the created_user_teams table
 
     Parameters
     ----------
-    user_team_id : uuid for string
-        The id of the user team to be deleted
+    name : string
+        The name of the user team to be deleted
+    season_id : string
+        The id of the season to which the user team belongs
 
     Returns
     -------
@@ -66,24 +67,17 @@ async def delete_user_team(user_team_id: str):
     """
     
     config = get_db_config()
-
-    try:
-        conn = await asyncpg.connect(**config)
-
-        result = await conn.execute(
-            "DELETE FROM created_user_teams WHERE user_team_id = %s;", 
-            user_team_id,
-        )
-
-        conn.close()
-
-        return result.startswith("DELETE") and result.split()[1] != "0"
     
-    except Exception as e:
-        print(f"An error occurred while deleting user team {user_team_id}: {e}")
-        return False
-    
-    
+    conn = await asyncpg.connect(**config)
+
+    result = await conn.execute(
+        "DELETE FROM created_user_teams WHERE name = $1 AND season_id = $2;", name, season_id
+    )
+
+    await conn.close()
+
+    return result.startswith("DELETE") and result.split()[1] != "0"
+      
 async def get_user_team(user_team_id: str):
     """Get user team by user_team_id
 
@@ -94,9 +88,8 @@ async def get_user_team(user_team_id: str):
 
     Returns
     -------
-    int
-
-        A list of integer values indicating the id for each of the leagues
+    CreatedUserTeam | None
+        Returns a CreatedUserTeam object if found, None otherwise
     """
     
     config = get_db_config()
@@ -106,8 +99,8 @@ async def get_user_team(user_team_id: str):
 
         # Read the user team by user_team_id
         result = await conn.execute(
-            "SELECT * FROM created_user_teams WHERE user_team_id = %s;", 
-            user_team_id,
+            "SELECT * FROM created_user_teams WHERE user_team_id = $1;", 
+user_team_id,
         )
         
         conn.close()

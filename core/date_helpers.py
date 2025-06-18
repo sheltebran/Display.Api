@@ -1,5 +1,6 @@
 from datetime import timezone
 from dateutil.parser import parse
+import pytz
 
 def format_date(date_string: str):
 
@@ -10,3 +11,11 @@ def format_date(date_string: str):
     formatted_date = event_date.astimezone(timezone.utc)
 
     return formatted_date
+
+def convert_utc_to_pdt(utc_dt):
+    """ Convert a UTC datetime to Pacific Daylight Time (PDT). """
+    
+    # Define the PDT timezone
+    pdt_timezone = pytz.timezone('US/Pacific')
+
+    return utc_dt.astimezone(pdt_timezone)

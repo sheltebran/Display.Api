@@ -6,10 +6,10 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 async def initialize_database():
     await create_database_if_not_exists()
     await create_headlines_table_if_not_exists()
-    await create_created_sports_table_if_not_exists()
+    await create_created_default_picks_table_if_not_exists()
     await create_created_leagues_table_if_not_exists()
     await create_created_user_teams_table_if_not_exists()
-
+    await create_created_weeks_table_if_not_exists()
 
 def get_db_config():
     """Get database connection
@@ -56,6 +56,34 @@ async def create_database_if_not_exists():
     cur.close()
     conn.close()
 
+async def create_created_default_picks_table_if_not_exists():
+    """Create the created_default_picks table"""
+
+    config = get_db_config()
+
+    try:
+        # Connect to the database
+        conn = await asyncpg.connect(**config)
+
+        command = """
+            CREATE TABLE IF NOT EXISTS created_default_picks (
+                created_default_pick_id SERIAL PRIMARY KEY,
+                game_id INT NOT NULL,
+                favorite_team_id VARCHAR(5) NOT NULL,
+                favorite_team_name VARCHAR(100) NOT NULL,
+                spread FLOAT NOT NULL,
+                week_id INT NOT NULL,
+                week_number INT NOT NULL,
+                event_date TIMESTAMPTZ NOT NULL);
+        """
+
+        await conn.execute(command)
+
+        await conn.close()
+
+    except Exception as e:
+        print(f"An error occurred while connecting to the database: {e}")
+
 async def create_headlines_table_if_not_exists():
     """Create the headlines table""" 
 
@@ -82,9 +110,9 @@ async def create_headlines_table_if_not_exists():
     except Exception as e:
         print(f"An error occurred while connecting to the database: {e}")
       
-async def create_created_sports_table_if_not_exists() -> None:
-    """Create the created_sports table"""
-        
+async def create_created_weeks_table_if_not_exists() -> None:
+    """Create the created_weeks table"""
+
     config = get_db_config()
 
     try:
@@ -92,10 +120,14 @@ async def create_created_sports_table_if_not_exists() -> None:
         conn = await asyncpg.connect(**config)
 
         command = """
-            CREATE TABLE IF NOT EXISTS created_sports (
-                created_sport_id SERIAL PRIMARY KEY,
-                sport_id int,
-                name VARCHAR(100) NOT NULL,
+            CREATE TABLE IF NOT EXISTS created_weeks (
+                created_week_id SERIAL PRIMARY KEY,
+                week_id INT NOT NULL,
+                week_number INT NOT NULL,
+                start_date TIMESTAMPTZ NOT NULL,
+                end_date TIMESTAMPTZ NOT NULL,
+                deadline_date TIMESTAMPTZ NOT NULL,
+                season_id UUID NOT NULL,
                 event_date TIMESTAMPTZ NOT NULL);
         """
 

@@ -1,6 +1,6 @@
-from fastapi import FastAPI
-import asyncio
 import aio_pika
+from fastapi import FastAPI
+
 from events.process_messages import process_message
 
 app = FastAPI()

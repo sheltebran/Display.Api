@@ -1,7 +1,5 @@
-from datetime import timezone
-from dateutil.parser import parse
+from core.date_helpers import format_date
 from features.user_teams.schemas import CreatedUserTeam
-from typing import List
 
 def map_to_created_user_team(user_team):
     """Map a user team dictionary to a CreatedUserTeam object.
@@ -17,13 +15,8 @@ def map_to_created_user_team(user_team):
         A CreatedUserTeam object with the mapped data.
     """
 
-    event_date_str = user_team["event_date"]
-
-    # Ensure it's timezone-aware
-    event_date = parse(event_date_str)
-
     # Normalize to a proper UTC tzinfo (fixes compatibility with asyncpg/PostgreSQL)
-    event_date = event_date.astimezone(timezone.utc)
+    event_date = format_date(user_team["event_date"])
 
     created_user_team = CreatedUserTeam(
         created_user_team_id=0, 

@@ -1,8 +1,9 @@
 import aio_pika
 import json
+from features.default_picks.services import process_default_pick_message
 from features.leagues.services import process_league_message
-from features.user_teams.repository import add_created_user_team
 from features.user_teams.services import process_user_team_message
+from features.weeks.services import process_week_message
 from camel_converter import dict_to_snake
 
 async def process_message(message: aio_pika.abc.AbstractIncomingMessage, exchange_name: str):
@@ -50,8 +51,8 @@ async def update_message_status(data, exchange_name: str) -> int:
         return result
 
     elif exchange_name == "default_pick_exchange":
-        # Handle default pick exchange logic
-        return -1
+        result = await process_default_pick_message(data)
+        return result
 
     elif exchange_name == "pick_exchange":
         # Handle pick exchange logic
@@ -62,16 +63,12 @@ async def update_message_status(data, exchange_name: str) -> int:
         return -1
 
     elif exchange_name == "user_team_exchange":
-        # Handle user team exchange logic
-        user_team = await process_user_team_message(data)
-        if user_team is not None:
-            return await add_created_user_team(user_team) 
-        else:
-            return -1
+        result = await process_user_team_message(data)
+        return result
 
     elif exchange_name == "week_exchange":
-        # Handle week exchange logic
-        return -1
+        result = await process_week_message(data)
+        return result
     
-    return 0
+    return False
 

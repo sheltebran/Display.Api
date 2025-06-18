@@ -4,7 +4,7 @@ from core.database import get_db_config
 from datetime import datetime
 from features.headlines.models import Headline
 from features.headlines.schemas import HeadlineCreate
-from typing import Any, List
+from typing import Any
 
 async def add_headline(headline: HeadlineCreate):
     """Add new headline
