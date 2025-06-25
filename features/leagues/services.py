@@ -33,6 +33,6 @@ async def process_league_message(data):
 
     except Exception as e:
         print(f"Error adding league: {e}")
-        return False
+        return True
             
     

@@ -1,5 +1,4 @@
-# DB access layer
-import psycopg2
+import asyncpg
 from core.database import get_db_config
 from datetime import datetime
 from features.headlines.models import Headline
@@ -19,22 +18,40 @@ async def add_headline(headline: HeadlineCreate):
     """
     
     config = get_db_config()
-    
-    with psycopg2.connect(**config) as conn:
-        conn.autocommit = True
-        cur = conn.cursor()
 
-    pub_date = datetime.strptime(headline.pub_date, '%m/%d/%Y %H:%M:%S')
+    try:
+        conn = await asyncpg.connect(**config)
 
-    cur.execute(f"INSERT INTO headlines (heading, story, link, pub_date, league_id) VALUES ('{headline.heading}', '{headline.story}', '{headline.link}', '{pub_date}', {headline.league_id}) RETURNING headline_id;")
-    
-    row: tuple[Any, ...] | None = cur.fetchone()
+        pub_date = datetime.strptime(headline.pub_date, '%m/%d/%Y %H:%M:%S')
 
-    conn.commit()
-    cur.close()
-    conn.close()
+        query = """
+            INSERT INTO headlines (
+                heading, story, link, pub_date, league_id
+            )
+            VALUES (
+                $1, $2, $3, $4, $5
+            )
+            RETURNING headline_id;
+        """
 
-    return row
+        row = await conn.fetchrow(
+            query,
+            headline.heading,
+            headline.story,
+            headline.link,
+            pub_date,
+            headline.league_id
+        )
+
+    except Exception as e:
+        print(f"Error inserting headline: {e}")
+        return 0
+
+    await conn.close()
+
+    return row["headline_id"] if row else 0
+
+
 
 async def get_all_headlines(league_id: int, limit: int):
     """Get all headlines for a league returning no more than the limit set
@@ -52,16 +69,24 @@ async def get_all_headlines(league_id: int, limit: int):
         Return a list of headlines for that league
     """
     config = get_db_config()
+
+    try:
+        conn = await asyncpg.connect(**config)
+
+        query = """
+            SELECT headline_id, heading, story, link, pub_date, league_id
+            FROM headlines
+            WHERE league_id = $1
+            ORDER BY pub_date LIMIT $2
+        """
+
+        rows = await conn.fetch(query, league_id, limit)
+
+    except Exception as e:
+        print(f"Error reading headlines: {e}")
+        return 0
     
-    with psycopg2.connect(**config) as conn:
-        conn.autocommit = True
-        cur = conn.cursor()
-    
-    cur.execute(f"SELECT headline_id, heading, story, link, pub_date, league_id FROM headlines WHERE league_id = {league_id} ORDER BY pub_date LIMIT {limit}")
-    
-    headline_list = cur.fetchall()
-    cur.close()
-    conn.close()
+    await conn.close()
 
     return [Headline(*item) for item in headline_list]
 
