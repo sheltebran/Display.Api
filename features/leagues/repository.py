@@ -64,7 +64,7 @@ async def delete_league(sport_id: int, name: str):
 
     return result.startswith("DELETE") and result.split()[1] != "0"
 
-async def get_league_ids(sport_id: int):
+async def get_leagues(sport_id: int):
     """Get all leagues for a sport
 
     Parameters
@@ -85,7 +85,7 @@ async def get_league_ids(sport_id: int):
 
         # Read the league ids by sport_id
         result = await conn.execute(
-            "SELECT league_id FROM created_leagues WHERE sport_id = $1;", sport_id,
+            "SELECT league_id, url FROM created_leagues WHERE sport_id = $1;", sport_id,
         )
         
         await conn.close()
@@ -93,6 +93,40 @@ async def get_league_ids(sport_id: int):
         return result if result else None
 
     except Exception as e:
-            print(f"An error occurred while reading user team {sport_id}: {e}")
+            print(f"An error occurred while reading leagues in sport {sport_id}: {e}")
             return False
+
+async def get_league_by_id(league_id: int):
+    """Read a league by its id
+
+    Parameters
+    ----------
+    league_id : int
+        The id of the league to read
+
+    Returns
+    -------
+    result : str or None
+        Returns the league information if found, otherwise None
+    """
+
+    try:
+        config = get_db_config()
+
+        conn = await asyncpg.connect(**config)
+
+        query = """
+            SELECT league_id, url FROM created_leagues WHERE league_id = $1;
+        """
+
+        # Obtain the league information
+        result = await conn.execute(query, league_id)
+
+        await conn.close()
+
+        return result if result else None
+
+    except Exception as e:
+        print(f"An error occurred while reading league {league_id}: {e}")
+        return None
 

@@ -1,11 +1,12 @@
 # FastAPI APIRouter
+import ssl
 from fastapi import APIRouter, HTTPException
 from features.headlines.mappings import map_headline_to_dtos
 from features.headlines.services import create_sport_headlines, get_headlines_by_league
 
 router = APIRouter(prefix="/headlines", tags=["Headlines"])
 
-@router.post("/{sport_id:int}/")
+@router.post("/{sport_id:int}")
 async def create_headlines(sport_id: int):
     """Create headlines for a sport
 
@@ -25,14 +26,12 @@ async def create_headlines(sport_id: int):
     HTTPException: Status code 405 (Conflict)
         The message will state that the write did not work correctly
     """
-    result = await create_sport_headlines(sport_id)
-
-    if result is False:
-        raise HTTPException(status_code=405, detail="Headline write did not work.")
+    
+    await create_sport_headlines(sport_id)
     
     return {"headlines": "successful"} 
 
-@router.get("/{league_id:int}/")
+@router.get("/{league_id:int}")
 async def list_headlines(league_id: int):
     """List all headlines for a league
     Function to list all headlines for a league. The league id is passed
@@ -50,6 +49,12 @@ async def list_headlines(league_id: int):
         List of the headlines for that league. The list is a list of
         tuples starting with a string and followed by the Headline class.
     """
-    headlines = await get_headlines_by_league(league_id)
+
+    headlines = await get_headlines_by_league(league_id, 10)
+
+    if not headlines:
+        raise HTTPException(status_code=404, detail="No headlines found for this league.")
+
     headline_dtos = map_headline_to_dtos(headlines)
+    
     return {"headlines": headline_dtos}

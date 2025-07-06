@@ -16,6 +16,7 @@ def map_headline_to_dtos(headlines: List[Headline]):
     List[HeadlineDto]
         List of the DTOs to be sent back to the caller
     """
+    
     headline_dto_list: List[HeadlineDto] = []
 
     for headline in headlines:

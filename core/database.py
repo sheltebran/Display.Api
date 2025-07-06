@@ -1,6 +1,5 @@
 import os
 import asyncpg
-import psycopg2 
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 async def initialize_database():
@@ -34,27 +33,24 @@ async def create_database_if_not_exists():
     If this database does not exist, then create it
     """
 
-    pwd = os.environ.get("MAIN_DB_PASSWORD")
-
-    conn = psycopg2.connect(
+    conn = await asyncpg.connect(
         host="localhost",
-        dbname="postgres",  # connect to default DB
+        database="postgres",  # connect to default DB
         user="postgres",
-        password=pwd,
+        password=os.environ.get("MAIN_DB_PASSWORD"),
         port=5432
     )
-    conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)  # Required for CREATE DATABASE
-    cur = conn.cursor()
 
-    # Check if database exists
-    cur.execute("SELECT 1 FROM pg_database WHERE datname = 'display_db'")
-    exists = cur.fetchone()
+    # conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)  # Required for CREATE DATABASE
 
+    command = "SELECT 1 FROM pg_database WHERE datname = 'display_db'"
+    exists = await conn.execute(command)
+
+    # If database does not exist, create it
     if not exists:
-        cur.execute("CREATE DATABASE display_db OWNER test")
+        await conn.execute("CREATE DATABASE display_db OWNER test")
 
-    cur.close()
-    conn.close()
+    await conn.close()
 
 async def create_created_default_picks_table_if_not_exists():
     """Create the created_default_picks table"""
