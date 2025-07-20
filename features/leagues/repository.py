@@ -84,7 +84,7 @@ async def get_leagues(sport_id: int):
         conn = await asyncpg.connect(**config)
 
         # Read the league ids by sport_id
-        result = await conn.execute(
+        result = await conn.fetch(
             "SELECT league_id, url FROM created_leagues WHERE sport_id = $1;", sport_id,
         )
         
@@ -120,7 +120,7 @@ async def get_league_by_id(league_id: int):
         """
 
         # Obtain the league information
-        result = await conn.execute(query, league_id)
+        result = await conn.fetchone(query, league_id)
 
         await conn.close()
 

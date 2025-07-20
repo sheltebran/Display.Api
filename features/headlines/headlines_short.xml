@@ -1,0 +1,64 @@
+<rss xmlns:media="http://search.yahoo.com/mrss/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"
+	version="2.0">
+	<channel>
+		<title>FOX Sports Digital</title>
+		<link>https://www.foxsports.com</link>
+		<description>FOX Sports Content Feed</description>
+		<image>
+			<title>FOX Sports Digital</title>
+			<url>https://b.fssta.com/uploads/application/fscom/fox-sports-logo-black.png</url>
+			<link>https://www.foxsports.com</link>
+		</image>
+		<pubDate>Thu, 10 Jul 2025 16:57:50 +0000</pubDate>
+		<ttl>180</ttl>
+		<language>en-us</language>
+		<atom:link
+			href="https://api.foxsports.com/v2/content/optimized-rss?partnerKey=MB0Wehpmuj2lUhuRhQaafhBjAJqaPU244mlTDK1i&amp;tags=fs\/cfb&amp;size=30"
+			rel="self" type="application/rss+xml" />
+		<atom:link rel="hub" href="https://foxsports.superfeedr.com" />
+		<item>
+			<title>
+					<![CDATA[The Biggest 'What Ifs' That Could Define the 2025 College Football Season]]>
+				</title>
+			<link>
+				https://www.foxsports.com/stories/college-football/biggest-what-ifs-could-define-2025-college-football-season</link>
+			<guid>
+				https://www.foxsports.com/stories/college-football/biggest-what-ifs-could-define-2025-college-football-season</guid>
+			<category>college-football</category>
+			<description>
+				    <![CDATA[What if Arch Manning doesn't live up to the hype? What if the Big Ten reigns supreme again? FOX Sports' college football writers each picked a different scenario that could define the 2025 college football season.]]>
+				</description>
+			<pubDate>Wed, 09 Jul 2025 19:42:39 -0400</pubDate>
+			<media:content
+				url="https://statics.foxsports.com/www.foxsports.com/content/uploads/2025/07/cfb-what-if.jpg"
+				expression="full" type="image/jpg" width="1167" height="656">
+				<media:thumbnail
+					url="https://a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/07/128/72/cfb-what-if.jpg"
+					width="128" height="72" />
+			</media:content>
+		</item>
+		<item>
+			<title>
+					<![CDATA[2025 College Football Odds: Chris 'The Bear' Fallica's Expert Picks, Best Bets]]>
+				</title>
+			<link>
+				https://www.foxsports.com/stories/college-football/2025-cfb-odds-chris-the-bear-fallicas-expert-picks-best-bets</link>
+			<guid>
+				https://www.foxsports.com/stories/college-football/2025-cfb-odds-chris-the-bear-fallicas-expert-picks-best-bets</guid>
+			<category>college-football</category>
+			<description>
+				    <![CDATA["The Bear" is back with his best early picks for the upcoming college football season, including two win total wagers. Let's get into it.]]>
+				</description>
+			<pubDate>Wed, 09 Jul 2025 18:39:13 -0400</pubDate>
+			<media:content
+				url="https://statics.foxsports.com/www.foxsports.com/content/uploads/2025/07/2025-03-05-bearbets.jpg"
+				expression="full" type="image/jpg" width="1167" height="656">
+				<media:thumbnail
+					url="https://a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/07/128/72/2025-03-05-bearbets.jpg"
+					width="128" height="72" />
+			</media:content>
+		</item>
+	</channel>
+</rss>

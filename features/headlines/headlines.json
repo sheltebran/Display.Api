@@ -1,0 +1,493 @@
+{'rss': {'@xmlns:media': 'http: //search.yahoo.com/mrss/', '@xmlns:content':
+'http: //purl.org/rss/1.0/modules/content/', '@xmlns:dc': 'http://purl.org/dc/elements/1.1/',
+'@xmlns:atom': 'http: //www.w3.org/2005/Atom', '@version': '2.0', 'channel': {'title': 'FOX Sports
+Digital', 'link': 'https: //www.foxsports.com', 'description': 'FOX Sports Content Feed', 'image':
+        {'title': 'FOX Sports Digital', 'url':
+'https: //b.fssta.com/uploads/application/fscom/fox-sports-logo-black.png', 'link':
+'https: //www.foxsports.com'}, 'pubDate': 'Sun, 06 Jul 2025 18:01:32 +0000', 'ttl': '180',
+'language': 'en-us', 'atom:link': [
+                {'@href':
+'https: //api.foxsports.com/v2/content/optimized-rss?partnerKey=MB0Wehpmuj2lUhuRhQaafhBjAJqaPU244mlTDK1i&tags=fs\\/cfb&size=30',
+'@rel': 'self', '@type': 'application/rss+xml'
+                },
+                {'@rel': 'hub', '@href':
+'https: //foxsports.superfeedr.com'}], 'item': [{'title': 'Texas Tech FB Commit Felix Ojo Lands
+Eye-Popping Revenue-Sharing Deal', 'link':
+'https: //www.foxsports.com/stories/college-football/texas-tech-commit-felix-ojo-lands-one-largest-revenue-sharing-deals',
+'guid':
+'https: //www.foxsports.com/stories/college-football/texas-tech-commit-felix-ojo-lands-one-largest-revenue-sharing-deals',
+'category': 'college-football', 'description': 'In one of the first major deals in the
+revenue-sharing era, Texas Tech commit Felix Ojo has reportedly agreed to a deal with the school
+that could be worth up to $5.1 million.', 'pubDate': 'Sun,
+                    06 Jul 2025 13: 32: 48 -0400',
+'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/07/joey-mcguire.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/07/128/72/joey-mcguire.jpg',
+'@width': '128', '@height': '72'
+                        }
+                    }
+                },
+                {'title': "How 2024-25 CFP Would've Looked Under Proposed
+Expansion Formats", 'link':
+'https: //www.foxsports.com/stories/college-football/how-2024-25-cfp-wouldve-looked-under-proposed-expansion-formats',
+'guid':
+'https: //www.foxsports.com/stories/college-football/how-2024-25-cfp-wouldve-looked-under-proposed-expansion-formats',
+'category': 'college-football', 'description': 'Here\'s what last year\'s CFP could\'ve looked like
+under the proposed format changes recently discussed on "Big Noon Conversations."', 'pubDate': 'Sat,
+                    05 Jul 2025 15: 07: 25 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/05/cfp-trophy.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/05/128/72/cfp-trophy.jpg',
+'@width': '128', '@height': '72'
+                        }
+                    }
+                },
+                {'title': "'College Football 26': The 10 Highest-Rated QBs,
+Offensive and Defensive Players", 'link':
+'https: //www.foxsports.com/stories/college-football/college-football-26-10-highest-rated-qbs-offensive-defensive-players',
+'guid':
+'https: //www.foxsports.com/stories/college-football/college-football-26-10-highest-rated-qbs-offensive-defensive-players',
+'category': 'college-football', 'description': 'Ohio State\'s Jeremiah Smith is the highest-rated
+player in "College Football 26," with a teammate of his earning the highest rating for defensive
+players.', 'pubDate': 'Wed,
+                    02 Jul 2025 11: 02: 08 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/07/jeremiah-smith.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/07/128/72/jeremiah-smith.jpg',
+'@width': '128', '@height': '72'
+                        }
+                    }
+                },
+                {'title': '2025 College Football Predictions, Picks: Back
+Colorado To Go Under Win Total', 'link':
+'https: //www.foxsports.com/stories/college-football/2025-college-football-predictions-picks-back-buffs-under-6-5-regular-season-wins',
+'guid':
+'https: //www.foxsports.com/stories/college-football/2025-college-football-predictions-picks-back-buffs-under-6-5-regular-season-wins',
+'category': 'college-football', 'description': 'Deion Sanders & Co. have proven doubters wrong the
+past two seasons. However, according to Geoff Schwartz, the tide will change in Year 3 for the
+Buffs.', 'pubDate': 'Wed,
+                    02 Jul 2025 09: 04: 18 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2024/09/deion-hoodie.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2024/09/128/72/deion-hoodie.jpg',
+'@width': '128', '@height': '72'
+                        }
+                    }
+                },
+                {'title': 'Urban Meyer on Big Ten rise & James Franklin title
+shot with Penn State | FULL INTERVIEW | The Herd', 'link':
+'https: //www.foxsports.com/watch/fmc-c02ys843cbtv9go1', 'guid':
+'https: //www.foxsports.com/watch/fmc-c02ys843cbtv9go1', 'category': 'college-football',
+'description': 'Urban Meyer joins Colin Cowherd to discuss whether the Big Ten is closing the gap on
+the SEC and if Penn State head coach James Franklin can finally break through and win a national
+title.', 'pubDate': 'Tue,
+                    01 Jul 2025 20: 51: 22 +0000', 'media:content': {'@url':
+'https: //static-media.fox.com/fmc/prod/sports/VX-13208937/jjl1jnnl1xtb1zla.jpg', '@expression':
+'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/static-media.fox.com/fmc/prod/sports/VX-13208937/128/72/jjl1jnnl1xtb1zla.jpg',
+'@width': '128', '@height': '72'
+                        }, 'media:description': {'@type': 'html', '#text': 'Urban Meyer on
+Big Ten rise & James Franklin title shot with Penn State | FULL INTERVIEW | The Herd'
+                        }
+                    }
+                },
+                {'title':
+'2025 College Football Playoff Predictions: Teams Capable of Making First Appearance', 'link':
+'https: //www.foxsports.com/stories/college-football/2025-college-football-playoff-predictions-teams-capable-making-first-appearance',
+'guid':
+'https: //www.foxsports.com/stories/college-football/2025-college-football-playoff-predictions-teams-capable-making-first-appearance',
+'category': 'college-football', 'description': "Is this the year Miami finally gets over the hump?
+FOX Sports' Michael Cohen breaks down 10 teams capable of reaching the College Football Playoff for
+the first time in 2025.", 'pubDate': 'Mon, 30 Jun 2025 13:14:36 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/cfb-liveblog-16x9-1.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/cfb-liveblog-16x9-1.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': 'Big Ten Commissioner Tony Petitti shares his
+thoughts on the 4AQ model for the CFP | Joel Klatt Show', 'link':
+'https: //www.foxsports.com/watch/fmc-ott17ma8eaehndbk', 'guid':
+'https: //www.foxsports.com/watch/fmc-ott17ma8eaehndbk', 'category': 'college-football',
+'description': 'Joel Klatt sat down with Tony Petitti and discussed the 4AQ model for the college
+football playoff. Petitti shared why the Big Ten and SEC would get four automatic qualifiers and the
+Big 12 and ACC would only get two.', 'pubDate': 'Mon,
+                30 Jun 2025 14: 00: 18 +0000', 'media:content': {'@url': 'https: //static-media.fox.com/fmc/prod/sports/VX-13195266/abo7eczswfwyzd2k.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/static-media.fox.com/fmc/prod/sports/VX-13195266/128/72/abo7eczswfwyzd2k.jpg',
+'@width': '128', '@height': '72'
+                    }, 'media:description': {'@type': 'html', '#text': 'Big Ten
+Commissioner Tony Petitti shares his thoughts on the 4AQ model for the CFP | Joel Klatt Show'
+                    }
+                }
+            },
+            {'title': "Tony Petitti Seeks More Meaningful Games In CFP Expansion: 'Bigger Is Better'", 'link':
+'https: //www.foxsports.com/stories/college-football/tony-petitti-seeks-more-meaningful-games-cfp-expansion-bigger-better',
+'guid':
+'https: //www.foxsports.com/stories/college-football/tony-petitti-seeks-more-meaningful-games-cfp-expansion-bigger-better',
+'category': 'college-football', 'description': 'Big Ten commissioner Tony Petitti shared what the
+future of the CFP might look like.', 'pubDate': 'Mon,
+                30 Jun 2025 10: 00: 14 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/bnc-episodeposter-editorial-16x9-1.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/bnc-episodeposter-editorial-16x9-1.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': 'Big Ten Commissioner Tony Petitti reveals his
+objectives for the CFP | Joel Klatt Show', 'link':
+'https: //www.foxsports.com/watch/fmc-kl07r2f6r4bmshfp', 'guid':
+'https: //www.foxsports.com/watch/fmc-kl07r2f6r4bmshfp', 'category': 'college-football',
+'description': 'Joel Klatt sat down with Big Ten Commissioner Tony Petitti and discussed objectives
+of the college football playoff. Petitti explained the importance of non-conference games and fan
+engagement. They analyzed the 16-team playoff format and explained why the Big Ten wants to play
+more non-conference games.', 'pubDate': 'Mon,
+                30 Jun 2025 14: 00: 00 +0000', 'media:content': {'@url':
+'https: //static-media.fox.com/fmc/prod/sports/VX-13195056/4hyrh0atw8304fd7.jpg', '@expression':
+'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/static-media.fox.com/fmc/prod/sports/VX-13195056/128/72/4hyrh0atw8304fd7.jpg',
+'@width': '128', '@height': '72'
+                    }, 'media:description': {'@type': 'html', '#text': 'Big Ten
+Commissioner Tony Petitti reveals his objectives for the CFP | Joel Klatt Show'
+                    }
+                }
+            },
+            {'title': 'Big
+Ten Commissioner Tony Petitti speaks on home games in the CFP | Joel Klatt Show', 'link':
+'https: //www.foxsports.com/watch/fmc-p7ol8fs4787r5qju', 'guid':
+'https: //www.foxsports.com/watch/fmc-p7ol8fs4787r5qju', 'category': 'college-football',
+'description': 'Joel Klatt sat down with Big Ten Commissioner Tony Petitti and discussed home
+playoff games in the college football playoff. Petitti explained how the environment was different
+from a regular season game and would like to see more of them in the future.', 'pubDate': 'Mon,
+                30
+Jun 2025 14: 00: 00 +0000', 'media:content': {'@url':
+'https: //static-media.fox.com/fmc/prod/sports/VX-13195220/8541xdoxeprfqtf5.jpg', '@expression':
+'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/static-media.fox.com/fmc/prod/sports/VX-13195220/128/72/8541xdoxeprfqtf5.jpg',
+'@width': '128', '@height': '72'
+                    }, 'media:description': {'@type': 'html', '#text': 'Big Ten
+Commissioner Tony Petitti speaks on home games in the CFP | Joel Klatt Show'
+                    }
+                }
+            },
+            {'title': '2025
+College Football Predictions: 10 Matchups that will Shape the Regular Season', 'link':
+'https: //www.foxsports.com/stories/college-football/2025-college-football-predictions-10-matchups-will-shape-regular-season',
+'guid':
+'https: //www.foxsports.com/stories/college-football/2025-college-football-predictions-10-matchups-will-shape-regular-season',
+'category': 'college-football', 'description': "Texas vs. Ohio State in Week 1? Yes please! Ohio
+State vs. Michigan in Week 14? Absolutely! FOX Sports' Joel Klatt lists 10 games that will shape the
+2025 college football season.", 'pubDate': 'Sat, 28 Jun 2025 16:49:08 -0400', 'media:content':{'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/2024-08-30-gamestowatch-16x9-1.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/2024-08-30-gamestowatch-16x9-1.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': '2025 College Football Picks, Predictions: Back Penn
+State To Surpass Win Total', 'link':
+'https: //www.foxsports.com/stories/college-football/2025-cfb-predictions-picks-back-penn-state-surpass-win-total',
+'guid':
+'https: //www.foxsports.com/stories/college-football/2025-cfb-predictions-picks-back-penn-state-surpass-win-total',
+'category': 'college-football', 'description': "The 2025 CFB season will kick off before we know it.
+With that, Sammy P is already looking ahead. See where he's putting his money early.", 'pubDate':
+'Fri,
+                27 Jun 2025 15: 04: 32 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2024/09/allar-vs-illini.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2024/09/128/72/allar-vs-illini.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': 'Marcus Freeman shares lessons he learned from losing
+the National Championship | Joel Klatt Show', 'link':
+'https: //www.foxsports.com/watch/fmc-gk5zwan5a18bwp1o', 'guid':
+'https: //www.foxsports.com/watch/fmc-gk5zwan5a18bwp1o', 'category': 'college-football',
+'description': 'Joel Klatt sat down with Marcus Freeman and discussed what lessons he learned from
+the loss to Ohio State in the National Championship. Freeman analyzed if he could have better
+prepared his team for the game and explained why to play the best you need to be your best.',
+'pubDate': 'Wed,
+                25 Jun 2025 21: 59: 54 +0000', 'media:content': {'@url':
+'https: //static-media.fox.com/fmc/prod/sports/VX-13167463/qp720n64lduxlrtw.jpg', '@expression':
+'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/static-media.fox.com/fmc/prod/sports/VX-13167463/128/72/qp720n64lduxlrtw.jpg',
+'@width': '128', '@height': '72'
+                    }, 'media:description': {'@type': 'html', '#text': 'Marcus Freeman
+shares lessons he learned from losing the National Championship | Joel Klatt Show'
+                    }
+                }
+            },
+            {'title':
+'Marcus Freeman shares why rivalry games are important in CFB | Joel Klatt Show', 'link':
+'https: //www.foxsports.com/watch/fmc-15zup5avooz3npuf', 'guid':
+'https: //www.foxsports.com/watch/fmc-15zup5avooz3npuf', 'category': 'college-football',
+'description': 'Joel Klatt sat down with Marcus Freeman and discussed the importance of the Notre
+Dame vs. USC rivalry game. Marcus Freeman explained why rivalry games are important in college
+football.', 'pubDate': 'Wed,
+                25 Jun 2025 21: 57: 45 +0000', 'media:content': {'@url':
+'https: //static-media.fox.com/fmc/prod/sports/VX-13167436/wae7qtu93p7whnil.jpg', '@expression':
+'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/static-media.fox.com/fmc/prod/sports/VX-13167436/128/72/wae7qtu93p7whnil.jpg',
+'@width': '128', '@height': '72'
+                    }, 'media:description': {'@type': 'html', '#text': 'Marcus Freeman
+shares why rivalry games are important in CFB | Joel Klatt Show'
+                    }
+                }
+            },
+            {'title': 'Highest-Paid College
+Football Players if NIL Existed Since 2000', 'link':
+'https: //www.foxsports.com/stories/college-football/highest-paid-college-football-players-nil-existed-since-2000',
+'guid':
+'https: //www.foxsports.com/stories/college-football/highest-paid-college-football-players-nil-existed-since-2000',
+'category': 'college-football', 'description': 'Johnny Manziel. Tim Tebow. Michael Vick. Who would
+have been the most profitable college football players if NIL existed since the turn of the
+century?', 'pubDate': 'Wed,
+                25 Jun 2025 16: 43: 56 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/1fcf0277-16x9if-nil.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/1fcf0277-16x9if-nil.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': 'College Football 26: What Are Top 5 Toughest Places
+To Play?', 'link':
+'https: //www.foxsports.com/stories/college-football/college-football-26-what-top-5-toughest-places-play',
+'guid':
+'https: //www.foxsports.com/stories/college-football/college-football-26-what-top-5-toughest-places-play',
+'category': 'college-football', 'description': "Home field advantage is crucial in EA Sports'
+College Football 26, but what stadiums are truly the toughest places to play in?", 'pubDate': 'Tue,24 Jun 2025 18: 45: 55 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/tiger_stadium_horizontal.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/tiger_stadium_horizontal.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': '2025 College Football Prediction, Best Bet: Back
+Oregon to Eclipse Win Total', 'link':
+'https: //www.foxsports.com/stories/college-football/2025-cfb-prediction-best-bet-back-oregon-eclipse-win-total',
+'guid':
+'https: //www.foxsports.com/stories/college-football/2025-cfb-prediction-best-bet-back-oregon-eclipse-win-total',
+'category': 'college-football', 'description': "Find out why Geoff Schwartz is backing the Oregon
+Ducks to eclipse their regular-season win totals. Let's get into it.", 'pubDate': 'Tue, 24 Jun 202515: 53: 03 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/dante-moore-6.24.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/dante-moore-6.24.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': 'What If ... the Patriots Had Never Fired Bill
+Belichick?', 'link':
+'https: //www.foxsports.com/stories/nfl/what-if-patriots-never-fired-bill-belichick', 'guid':
+'https: //www.foxsports.com/stories/nfl/what-if-patriots-never-fired-bill-belichick', 'category':
+'nfl', 'description': 'If Bill Belichick stayed in New England, would the Patriots have won another
+title?', 'pubDate': 'Tue,
+                24 Jun 2025 09: 25: 34 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/4a2bcd3f-nix-16x9-1.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/4a2bcd3f-nix-16x9-1.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': '2025 CFB Odds: Who Will Be Crowned the Big Ten
+Champion?', 'link':
+'https: //www.foxsports.com/stories/college-football/2025-cfb-odds-who-will-crowned-big-ten-champion',
+'guid':
+'https: //www.foxsports.com/stories/college-football/2025-cfb-odds-who-will-crowned-big-ten-champion',
+'category': 'college-football', 'description': "As college football gears up for another exciting
+season in just two months, it's time to look ahead. Who will win the 2025-26 Big Ten title?",
+'pubDate': 'Mon,
+                23 Jun 2025 20: 24: 01 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/jeremiah-smith6-20.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/jeremiah-smith6-20.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': '2025 CFB Odds: Who Will Claim the SEC Title?',
+'link': 'https: //www.foxsports.com/stories/college-football/2025-cfb-odds-who-will-claim-sec-title',
+'guid': 'https: //www.foxsports.com/stories/college-football/2025-cfb-odds-who-will-claim-sec-title',
+'category': 'college-football', 'description': "As college football kicks off in just two months,
+it's time to predict who will win the SEC Title in 2025-26. Let's get into it.", 'pubDate': 'Mon, 23
+Jun 2025 19: 39: 06 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2024/09/arch-manning.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2024/09/128/72/arch-manning.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': "Pop-Tarts Bowl mascot among 35 mascots to be added
+for 'College Football 26'", 'link':
+'https: //www.foxsports.com/stories/college-football/pop-tarts-bowl-mascot-among-35-mascots-added-college-football-26',
+'guid':
+'https: //www.foxsports.com/stories/college-football/pop-tarts-bowl-mascot-among-35-mascots-added-college-football-26',
+'category': 'college-football', 'description': 'Nearly three dozen mascots are being added to
+"College Football 26," along with some of the most classic runouts in college football.', 'pubDate':
+'Mon,
+                23 Jun 2025 17: 31: 01 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/pop-tarts-bowl-mascot.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/pop-tarts-bowl-mascot.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': "Florida State QB Tommy Castellanos 'Doesn't See'
+Alabama Stopping Him", 'link':
+'https: //www.foxsports.com/stories/college-football/florida-state-qb-tommy-castellanos-doesnt-see-alabama-stopping-him',
+'guid':
+'https: //www.foxsports.com/stories/college-football/florida-state-qb-tommy-castellanos-doesnt-see-alabama-stopping-him',
+'category': 'college-football', 'description': 'Florida State quarterback Tommy Castellanos
+challenged Alabama two months before their Week 1 matchup.', 'pubDate': 'Mon,
+                23 Jun 2025 17: 22: 50
+-0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/thomas_castellanos_horizontal.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/thomas_castellanos_horizontal.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': 'Alabama & Georgia in Joel Klatt’s top games that
+will shape the 2025 season | Joel Klatt Show', 'link':
+'https: //www.foxsports.com/watch/fmc-9j9pp71f8s7x46ia', 'guid':
+'https: //www.foxsports.com/watch/fmc-9j9pp71f8s7x46ia', 'category': 'college-football',
+'description': 'Joel Klatt shared his top 10 games that will shape the season in 2025. He explained
+why the Alabama Crimson Tide vs. Georgia Bulldogs is a huge game with championship game stakes on
+the line. Joel analyzed the implications for Kirby Smart if Georgia loses to Alabama and if Alabama
+would be back at the caliber they were under Nick Saban. He broke down how Penn State and James
+Franklin need to win matchup games to be championship contenders.', 'pubDate': 'Mon,
+                23 Jun 2025
+18: 19: 23 +0000', 'media:content': {'@url':
+'https: //static-media.fox.com/fmc/prod/sports/VX-13148386/9fy9j99zs9lc6vzz.jpg', '@expression':
+'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/static-media.fox.com/fmc/prod/sports/VX-13148386/128/72/9fy9j99zs9lc6vzz.jpg',
+'@width': '128', '@height': '72'
+                    }, 'media:description': {'@type': 'html', '#text': 'Alabama &
+Georgia in Joel Klatt’s top games that will shape the 2025 season | Joel Klatt Show'
+                    }
+                }
+            },
+            {'title':
+'Texas & Ohio State in Joel Klatt’s top games that will shape the 2025 season | Joel Klatt Show',
+'link': 'https: //www.foxsports.com/watch/fmc-2ctdpw7xykzokpi6', 'guid':
+'https: //www.foxsports.com/watch/fmc-2ctdpw7xykzokpi6', 'category': 'college-football',
+'description': 'Joel Klatt shares his top 10 games that will shape the season in 2025. He explained
+why the Texas Longhorns vs. Ohio State Buckeyes in week 1 will be a game that shapes the season.
+Joel dove into how Steve Sarkisian and Arch Manning will take on Ryan Day and if Julian Sayin will
+be the starting QB in this rematch. He analyzed why the LSU Tigers vs. Clemson Tigers will be a big
+out of conference matchup.', 'pubDate': 'Mon,
+                23 Jun 2025 17: 28: 41 +0000', 'media:content': {'@url':
+'https: //static-media.fox.com/fmc/prod/sports/VX-13148242/h4w65pz7s6tntwrn.jpg', '@expression':
+'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/static-media.fox.com/fmc/prod/sports/VX-13148242/128/72/h4w65pz7s6tntwrn.jpg',
+'@width': '128', '@height': '72'
+                    }, 'media:description': {'@type': 'html', '#text': 'Texas & Ohio
+State in Joel Klatt’s top games that will shape the 2025 season | Joel Klatt Show'
+                    }
+                }
+            },
+            {'title':
+'Top 10 Breakout Candidates Heading Into the 2025 College Football Season', 'link':
+'https: //www.foxsports.com/stories/college-football/top-10-breakout-candidates-heading-2025-college-football-season',
+'guid':
+'https: //www.foxsports.com/stories/college-football/top-10-breakout-candidates-heading-2025-college-football-season',
+'category': 'college-football', 'description': 'These 10 potential breakout candidates could take
+over college football in 2025.', 'pubDate': 'Mon,
+                23 Jun 2025 11: 41: 23 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/16x9breakout-10.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/16x9breakout-10.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': 'Ex-Ohio State Football Player Kirk Barton Charged in
+Deadly Ohio Car Crash', 'link':
+'https: //www.foxsports.com/stories/college-football/ex-ohio-state-football-player-kirk-barton-charged-deadly-ohio-car-crash',
+'guid':
+'https: //www.foxsports.com/stories/college-football/ex-ohio-state-football-player-kirk-barton-charged-deadly-ohio-car-crash',
+'category': 'college-football', 'description': 'Former Ohio State OL Kirk Barton facing criminal
+charges following fatal crash.', 'pubDate': 'Sat,
+                21 Jun 2025 21: 21: 33 -0400', 'media:content': {'@url': 'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/kirk-barton1.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/kirk-barton1.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': 'Wisconsin, NIL Collective Sues Miami for Alleged
+Transfer Tampering', 'link':
+'https: //www.foxsports.com/stories/college-football/wisconsin-reportedly-files-suit-against-miami-xavier-lucas-transfer',
+'guid':
+'https: //www.foxsports.com/stories/college-football/wisconsin-reportedly-files-suit-against-miami-xavier-lucas-transfer',
+'category': 'college-football', 'description': 'Wisconsin and its NIL collective filed a complaint
+in court against Miami.', 'pubDate': 'Fri,
+                20 Jun 2025 20: 43: 01 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/lucas1.jpg', '@expression':
+'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/lucas1.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': '2025 CFP Championship Odds: Ohio State and Texas Top
+the Board', 'link':
+'https: //www.foxsports.com/stories/college-football/2025-college-football-playoff-championship-odds',
+'guid':
+'https: //www.foxsports.com/stories/college-football/2025-college-football-playoff-championship-odds',
+'category': 'college-football', 'description': "With college football just two months away, let's
+take a closer look at the updated odds for the 2025 College Football Playoff title race.",
+'pubDate': 'Fri,
+                20 Jun 2025 16: 12: 09 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/01/smith-120.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/01/128/72/smith-120.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': '2025 College Football Playoff Odds: Which Teams
+Favored In New Format?', 'link':
+'https: //www.foxsports.com/stories/college-football/teams-odds-to-make-12-team-postseason', 'guid':
+'https: //www.foxsports.com/stories/college-football/teams-odds-to-make-12-team-postseason',
+'category': 'college-football', 'description': 'Which teams have the best odds to earn spots in the
+2025 College Football Playoff? Check out the latest lines along with insight from Joel Klatt.',
+'pubDate': 'Fri,
+                20 Jun 2025 15: 28: 02 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/ryan-day_ohio-state_horizontal2025.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/ryan-day_ohio-state_horizontal2025.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            },
+            {'title': 'The 10 Best Individual Championship Performances
+Since 2020', 'link':
+'https: //www.foxsports.com/stories/nhl/best-championship-performances-since-2020', 'guid':
+'https: //www.foxsports.com/stories/nhl/best-championship-performances-since-2020', 'category':
+'nhl', 'description': "Sam Reinhart joined rare air in the Panthers' series-clinching Stanley Cup
+Final win. So, here are the 10 best individual performances in championship games since 2020.",
+'pubDate': 'Wed,
+                18 Jun 2025 16: 19: 55 -0400', 'media:content': {'@url':
+'https: //statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/giannis-messi.jpg',
+'@expression': 'full', '@type': 'image/jpg', '@width': '1167', '@height': '656', 'media:thumbnail': {'@url':
+'https: //a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2025/06/128/72/giannis-messi.jpg',
+'@width': '128', '@height': '72'
+                    }
+                }
+            }
+        ]
+    }
+}
+}

@@ -1,8 +1,7 @@
 # FastAPI APIRouter
-import ssl
 from fastapi import APIRouter, HTTPException
 from features.headlines.mappings import map_headline_to_dtos
-from features.headlines.services import create_sport_headlines, get_headlines_by_league
+from features.headlines.services import create_headlines_for_sport, get_headlines_by_league
 
 router = APIRouter(prefix="/headlines", tags=["Headlines"])
 
@@ -27,7 +26,7 @@ async def create_headlines(sport_id: int):
         The message will state that the write did not work correctly
     """
     
-    await create_sport_headlines(sport_id)
+    await create_headlines_for_sport(sport_id)
     
     return {"headlines": "successful"} 
 
@@ -50,11 +49,9 @@ async def list_headlines(league_id: int):
         tuples starting with a string and followed by the Headline class.
     """
 
-    headlines = await get_headlines_by_league(league_id, 10)
+    headlines_dto = await get_headlines_by_league(league_id, 10)
 
-    if not headlines:
+    if not headlines_dto:
         raise HTTPException(status_code=404, detail="No headlines found for this league.")
-
-    headline_dtos = map_headline_to_dtos(headlines)
     
-    return {"headlines": headline_dtos}
+    return {"headlines": headlines_dto}

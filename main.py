@@ -1,5 +1,6 @@
 # FastAPI app instantiation and startup
 import asyncio
+import uvicorn
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from api.router import api_router
@@ -26,5 +27,3 @@ app.include_router(api_router)
 @app.get("/")
 def read_root():
     return {"message": "Service running"}
-
-    

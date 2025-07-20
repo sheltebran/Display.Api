@@ -9,7 +9,9 @@
                 "main:app",
                 "--reload",
                 "--port","7069",
-                "--host","localhost"
+                "--host","localhost",
+                "--ssl-keyfile", "certs/localhost+2-key.pem",
+                "--ssl-certfile", "certs/localhost+2.pem"
             ]
         }
     ]

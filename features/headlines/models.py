@@ -10,3 +10,11 @@ class Headline:
     link: str
     pub_date: datetime
     league_id: int
+
+@dataclass
+class HeadlineDto:
+    heading: str
+    story: str
+    link: str
+    pub_date: datetime
+    league_id: int

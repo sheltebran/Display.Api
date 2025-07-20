@@ -1,13 +1,10 @@
 # Business logic
 from api.external_routing import fetch_external_data
 from fastapi import HTTPException
-from features.headlines.models import Headline
-from features.headlines.repository import add_headline, get_all_headlines
-from features.leagues.repository import get_leagues, get_league_by_id
-from features.headlines.schemas import HeadlineCreate
-from typing import List
+from features.headlines.repository import add_headline, get_all_headlines, delete_headlines_for_league
+from features.leagues.repository import get_leagues
 
-async def create_sport_headlines(sport_id: int):
+async def create_headlines_for_sport(sport_id: int):
     """Request to get and create new headlines
 
     This function accesses a sports headlines feed, parses the data
@@ -31,17 +28,20 @@ async def create_sport_headlines(sport_id: int):
         raise HTTPException(status_code=404, detail=f"No leagues found for sport {sport_id}.")
 
     for league in leagues:
-        headlines_dict = await import_headlines(league["league_id"])
+        headlines_list = await import_headlines(league["url"])
 
-        if not headlines_dict:
+        if not headlines_list:
             raise HTTPException(status_code=404, detail=f"No headlines found for league {league['league_id']}.")
         
-        for headline_dict in headlines_dict:
-            row = await add_headline(headline_dict)
+        # Clear existing headlines for the league
+        await delete_headlines_for_league(league["league_id"])
+
+        for headline_list in headlines_list:
+            row = await add_headline(headline_list, league["league_id"])
             if row is None:
                 raise HTTPException(status_code=500, detail="Failed to add headline to database.")
 
-async def get_headlines_by_league(league_id: int, limit: int = 10) -> List[Headline]:
+async def get_headlines_by_league(league_id: int, limit: int = 10):
     """Get all headlines
 
     Function to extract all headlines in the database for a league and send back
@@ -57,13 +57,13 @@ async def get_headlines_by_league(league_id: int, limit: int = 10) -> List[Headl
 
     return headlines
 
-async def import_headlines(league_id: int):
+async def import_headlines(url: str):
     """Import the sport headlines from a RSS feed
 
     Parameters
     ----------
-    league_id: int
-    Id for the league
+    url: str
+        The URL of the RSS feed to import headlines from
 
     Returns
     -------
@@ -72,14 +72,9 @@ async def import_headlines(league_id: int):
 
     """
 
-    league = await get_league_by_id(league_id)
-
-    if not league:
-        raise HTTPException(status_code=404, detail=f"League with id {league_id} not found.")
-
     # call url and get headline data
-    headlines_dict = await fetch_external_data(league["url"])
+    headlines_list = await fetch_external_data(url)
 
     # return list of headlines to be written
-    return headlines_dict
+    return headlines_list
 

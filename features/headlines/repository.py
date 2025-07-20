@@ -1,11 +1,11 @@
 import asyncpg
 from core.database import get_db_config
 from datetime import datetime
-from features.headlines.models import Headline
-from features.headlines.schemas import HeadlineCreate
+from fastapi import HTTPException
+from features.headlines.models import HeadlineDto
 from typing import List
 
-async def add_headline(headline):
+async def add_headline(headline, league_id: int):
     """Add new headline
 
     Add a new headline and return the result of the addition
@@ -22,7 +22,8 @@ async def add_headline(headline):
     try:
         conn = await asyncpg.connect(**config)
 
-        pub_date = datetime.strptime(headline["pub_date"], '%m/%d/%Y %H:%M:%S')
+        # Parse the publication date from the headline
+        pub_date = datetime.strptime(headline.get("pubDate"), '%a, %d %b %Y %H:%M:%S %z')
 
         query = """
             INSERT INTO headlines (
@@ -36,11 +37,11 @@ async def add_headline(headline):
 
         row = await conn.fetchrow(
             query,
-            headline["heading"],
-            headline["story"],
-            headline["link"],
+            headline.get("title"),
+            headline.get("description"),
+            headline.get("link"),
             pub_date,
-            headline["league_id"]
+            league_id
         )
 
         await conn.close()
@@ -50,6 +51,33 @@ async def add_headline(headline):
     except Exception as e:
         print(f"Error inserting headline: {e}")
         return 0
+
+async def delete_headlines_for_league(league_id: int):
+    """Delete all headlines for a specific league
+
+    Parameters
+    ----------
+    league_id: int
+        The ID of the league to delete headlines for
+
+    Returns
+    -------
+    bool
+        Returns True if the deletion was successful, False otherwise
+    """
+
+    config = get_db_config()
+
+    conn = await asyncpg.connect(**config)
+
+    result = await conn.execute(
+        "DELETE FROM headlines WHERE league_id = $1;", league_id
+    )
+
+    await conn.close()
+
+    return result.startswith("DELETE") and result.split()[1] != "0"
+
 
 async def get_all_headlines(league_id: int, limit: int):
     """Get all headlines for a league returning no more than the limit set
@@ -83,9 +111,8 @@ async def get_all_headlines(league_id: int, limit: int):
 
         await conn.close()
 
-        return [Headline(*item) for item in rows] if rows else []
+        return [HeadlineDto(*item) for item in rows] if rows else []
 
     except Exception as e:
-        print(f"Error reading headlines: {e}")
-        return []
+        raise HTTPException(status_code=500, detail=f"An error occurred while writing {e}.")
     
