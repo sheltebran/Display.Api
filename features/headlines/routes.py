@@ -30,6 +30,7 @@ async def create_headlines(sport_id: int):
     
     return {"headlines": "successful"} 
 
+
 @router.get("/{league_id:int}")
 async def list_headlines(league_id: int):
     """List all headlines for a league

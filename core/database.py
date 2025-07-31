@@ -9,6 +9,9 @@ async def initialize_database():
     await create_created_leagues_table_if_not_exists()
     await create_created_user_teams_table_if_not_exists()
     await create_created_weeks_table_if_not_exists()
+    await create_created_picks_table_if_not_exists()
+    await create_created_pick_details_table_if_not_exists()
+
 
 def get_db_config():
     """Get database connection
@@ -27,6 +30,7 @@ def get_db_config():
         "port": 5432
     }
 
+
 async def create_database_if_not_exists():
     """Create database
 
@@ -41,8 +45,6 @@ async def create_database_if_not_exists():
         port=5432
     )
 
-    # conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)  # Required for CREATE DATABASE
-
     command = "SELECT 1 FROM pg_database WHERE datname = 'display_db'"
     exists = await conn.execute(command)
 
@@ -51,6 +53,7 @@ async def create_database_if_not_exists():
         await conn.execute("CREATE DATABASE display_db OWNER test")
 
     await conn.close()
+
 
 async def create_created_default_picks_table_if_not_exists():
     """Create the created_default_picks table"""
@@ -80,6 +83,7 @@ async def create_created_default_picks_table_if_not_exists():
     except Exception as e:
         print(f"An error occurred while connecting to the database: {e}")
 
+
 async def create_headlines_table_if_not_exists():
     """Create the headlines table""" 
 
@@ -106,6 +110,7 @@ async def create_headlines_table_if_not_exists():
     except Exception as e:
         print(f"An error occurred while connecting to the database: {e}")
       
+
 async def create_created_weeks_table_if_not_exists() -> None:
     """Create the created_weeks table"""
 
@@ -134,6 +139,7 @@ async def create_created_weeks_table_if_not_exists() -> None:
     except Exception as e:
         print(f"An error occurred while connecting to the database: {e}")
 
+
 async def create_created_leagues_table_if_not_exists():
     """Create the created_leagues table"""
         
@@ -159,6 +165,7 @@ async def create_created_leagues_table_if_not_exists():
 
     except Exception as e:
         print(f"An error occurred while connecting to the database: {e}")
+
 
 async def create_created_user_teams_table_if_not_exists():
     """Create the created_user_teams table"""
@@ -191,4 +198,64 @@ async def create_created_user_teams_table_if_not_exists():
 
     except Exception as e:
         print(f"An error occurred while connecting to the database: {e}")
+
+
+async def create_created_picks_table_if_not_exists():
+    """Create the created_picks table"""
+
+    config = get_db_config()
+
+    try:
+        # Connect to the database
+        conn = await asyncpg.connect(**config)
+
+        command = """
+            CREATE TABLE IF NOT EXISTS created_picks (
+                created_pick_id SERIAL PRIMARY KEY,
+                pick_id INT NOT NULL,
+                bet INT NOT NULL,
+                amount_won INT NOT NULL DEFAULT 0,
+                week_id INT NOT NULL,
+                user_team_id UUID NOT NULL,
+                parlay_size INT NOT NULL DEFAULT 1,
+                event_date TIMESTAMPTZ NOT NULL);
+        """
+
+        await conn.execute(command)
+
+        await conn.close()
+
+    except Exception as e:
+        print(f"An error occurred while creating created_picks table: {e}")
+
+
+async def create_created_pick_details_table_if_not_exists():
+    """Create the created_pick_details table"""
+
+    config = get_db_config()
+
+    try:
+        # Connect to the database
+        conn = await asyncpg.connect(**config)
+
+        command = """
+            CREATE TABLE IF NOT EXISTS created_pick_details (
+                created_pick_detail_id SERIAL PRIMARY KEY,
+                pick_detail_id INT NOT NULL,
+                game_id INT NOT NULL,
+                spread DECIMAL(5,2) NOT NULL DEFAULT 0.0,
+                total DECIMAL(5,2) NOT NULL DEFAULT 0.0,
+                is_correct INT NOT NULL DEFAULT 0,
+                created_pick_id INT NOT NULL,
+                football_team_id VARCHAR(10) NOT NULL DEFAULT '',
+                event_date TIMESTAMPTZ NOT NULL,
+                FOREIGN KEY (created_pick_id) REFERENCES created_picks(created_pick_id) ON DELETE CASCADE);
+        """
+
+        await conn.execute(command)
+
+        await conn.close()
+
+    except Exception as e:
+        print(f"An error occurred while creating created_pick_details table: {e}")
 

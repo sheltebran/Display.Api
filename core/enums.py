@@ -2,7 +2,7 @@ created_status = ["new", "update", "delete"]
 created_status_dict = {status: index for index, status in enumerate(created_status)}
 class CreatedStatus:
     """Enum for created status."""
-    
+
     NEW = 0
     UPDATE = 1
     DELETE = 2
@@ -11,3 +11,10 @@ class CreatedStatus:
     def to_dict(cls):
         """Return a dictionary representation of the enum."""
         return {status: index for index, status in enumerate(cls.__dict__.keys()) if not status.startswith('_')}
+
+class PickWin:
+    """Enum for pick win status."""
+
+    NONE = 0
+    WIN = 1
+    LOSS = 2

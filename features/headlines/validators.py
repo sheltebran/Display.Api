@@ -12,8 +12,10 @@ def is_not_null_or_empty(value: str):
     return value
 
 def validate_datetime_string(value: str) -> str:
+    if value is None:
+        raise ValueError("Invalid datetime format. Must be ISO 8601 (e.g. '2025-05-19T14:00:00')")
     try:
         datetime.fromisoformat(value)
-    except ValueError:
+    except (ValueError, TypeError):
         raise ValueError("Invalid datetime format. Must be ISO 8601 (e.g. '2025-05-19T14:00:00')")
     return value

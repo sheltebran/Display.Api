@@ -41,6 +41,7 @@ async def create_headlines_for_sport(sport_id: int):
             if row is None:
                 raise HTTPException(status_code=500, detail="Failed to add headline to database.")
 
+
 async def get_headlines_by_league(league_id: int, limit: int = 10):
     """Get all headlines
 
@@ -56,6 +57,7 @@ async def get_headlines_by_league(league_id: int, limit: int = 10):
     headlines = await get_all_headlines(league_id, limit)
 
     return headlines
+
 
 async def import_headlines(url: str):
     """Import the sport headlines from a RSS feed

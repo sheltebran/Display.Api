@@ -52,6 +52,7 @@ async def add_headline(headline, league_id: int):
         print(f"Error inserting headline: {e}")
         return 0
 
+
 async def delete_headlines_for_league(league_id: int):
     """Delete all headlines for a specific league
 

@@ -2,6 +2,7 @@ import aio_pika
 import json
 from features.default_picks.services import process_default_pick_message
 from features.leagues.services import process_league_message
+from features.picks.services import process_pick_message
 from features.user_teams.services import process_user_team_message
 from features.weeks.services import process_week_message
 from camel_converter import dict_to_snake
@@ -55,8 +56,8 @@ async def update_message_status(data, exchange_name: str) -> int:
         return result
 
     elif exchange_name == "pick_exchange":
-        # Handle pick exchange logic
-        return -1
+        result = await process_pick_message(data)
+        return result
 
     elif exchange_name == "ranking_exchange":
         # Handle ranking exchange logic
