@@ -1,3 +1,4 @@
+import logging
 from core.enums import CreatedStatus
 from features.picks.mappings import map_to_created_pick, map_to_created_pick_details
 from features.picks.repository import add_created_pick, add_created_pick_detail, delete_pick
@@ -16,6 +17,8 @@ async def process_pick_message(data: dict) -> bool:
         Returns True if the pick is processed successfully, False otherwise.
     """
 
+    logger = logging.getLogger(__name__)
+
     try:
         # Remove any entries like this one (delete-first pattern)
         await delete_pick(data["pick_id"], data["user_team_id"])
@@ -31,7 +34,7 @@ async def process_pick_message(data: dict) -> bool:
         created_pick_id = await add_created_pick(pick)
 
         if created_pick_id <= 0:
-            print(f"Failed to create pick with id {data['pick_id']}")
+            logger.error(f"Failed to create pick with id {data['pick_id']}")
             return False
 
         # Process pick details if they exist
@@ -48,12 +51,12 @@ async def process_pick_message(data: dict) -> bool:
             for pick_detail in pick_details:
                 detail_result = await add_created_pick_detail(pick_detail)
                 if detail_result <= 0:
-                    print(f"Failed to create pick detail with id {pick_detail.pick_detail_id}")
+                    logger.error(f"Failed to create pick detail with id {pick_detail.pick_detail_id}")
                     # Note: In a production system, you might want to rollback the pick creation
                     # or implement a more sophisticated error handling strategy
 
         return True
 
     except Exception as e:
-        print(f"Error processing pick message: {e}")
+        logger.exception(f"Error processing pick message: {e}")
         return False

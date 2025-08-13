@@ -1,7 +1,10 @@
-# Business logic
 from api.external_routing import fetch_external_data
 from fastapi import HTTPException
-from features.headlines.repository import add_headline, get_all_headlines, delete_headlines_for_league
+from features.headlines.repository import (
+    add_headline, 
+    get_all_headlines, 
+    delete_headlines_for_league
+)
 from features.leagues.repository import get_leagues
 
 async def create_headlines_for_sport(sport_id: int):

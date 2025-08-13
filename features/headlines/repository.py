@@ -1,9 +1,9 @@
 import asyncpg
+import logging
 from core.database import get_db_config
 from datetime import datetime
 from fastapi import HTTPException
 from features.headlines.models import HeadlineDto
-from typing import List
 
 async def add_headline(headline, league_id: int):
     """Add new headline
@@ -17,6 +17,8 @@ async def add_headline(headline, league_id: int):
         or less then the operation failed
     """
     
+    logger = logging.getLogger(__name__)
+
     config = get_db_config()
 
     try:
@@ -49,7 +51,8 @@ async def add_headline(headline, league_id: int):
         return row["headline_id"] if row else 0
 
     except Exception as e:
-        print(f"Error inserting headline: {e}")
+        logger.exception(f"Error inserting headline: {e}")
+        # print(f"Error inserting headline: {e}")
         return 0
 
 
@@ -115,5 +118,5 @@ async def get_all_headlines(league_id: int, limit: int):
         return [HeadlineDto(*item) for item in rows] if rows else []
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"An error occurred while writing {e}.")
+        raise HTTPException(status_code=500, detail=f"An error occurred while retrieving headlines: {e}.")
     

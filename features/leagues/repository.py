@@ -1,4 +1,5 @@
 import asyncpg
+import logging
 from core.database import get_db_config
 from features.leagues.schemas import CreatedLeague
 
@@ -12,18 +13,21 @@ async def add_created_league(league: CreatedLeague):
         or less then the operation failed
     """
     
-    config = get_db_config()
-    
-    conn = await asyncpg.connect(**config)
+    logger = logging.getLogger(__name__)
 
-    query = """
+    try:
+        config = get_db_config()
+    
+        conn = await asyncpg.connect(**config)
+
+        query = """
         INSERT INTO created_leagues (league_id, name, url, sport_id, event_date
         ) VALUES (
             $1, $2, $3, $4, $5
         ) RETURNING created_league_id;
     """
 
-    row = await conn.fetchrow(
+        row = await conn.fetchrow(
         query,
         league.league_id,
         league.name,
@@ -32,9 +36,13 @@ async def add_created_league(league: CreatedLeague):
         league.event_date
     )
 
-    await conn.close()
+        await conn.close()
 
-    return row["created_league_id"] if row else 0
+        return row["created_league_id"] if row else 0
+
+    except Exception as e:
+        logger.exception(f"An error occurred while adding new league {league.name}: {e}")
+        return False
 
 async def delete_league(sport_id: int, name: str):
     """Delete a league from the created_leagues table
@@ -78,6 +86,8 @@ async def get_leagues(sport_id: int):
         A list of integer values indicating the id for each of the leagues
     """
     
+    logger = logging.getLogger(__name__)
+    
     try:
         config = get_db_config()
 
@@ -93,8 +103,8 @@ async def get_leagues(sport_id: int):
         return result if result else None
 
     except Exception as e:
-            print(f"An error occurred while reading leagues in sport {sport_id}: {e}")
-            return False
+        logger.exception(f"An error occurred while reading leagues in sport {sport_id}: {e}")
+        return False
 
 async def get_league_by_id(league_id: int):
     """Read a league by its id

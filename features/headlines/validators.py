@@ -1,4 +1,3 @@
-# Optional: custom pydantic or logic validators
 from datetime import datetime
 
 def is_greater_than_zero(value: int):

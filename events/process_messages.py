@@ -1,5 +1,6 @@
 import aio_pika
 import json
+import logging
 from features.default_picks.services import process_default_pick_message
 from features.leagues.services import process_league_message
 from features.picks.services import process_pick_message
@@ -12,7 +13,8 @@ async def process_message(message: aio_pika.abc.AbstractIncomingMessage, exchang
         """Process a RabbitMQ message based on the exchange name."""
 
         raw_body = message.body.decode()
-        print(f"[RabbitMQ:{exchange_name}] Received: {raw_body}")
+        logger = logging.getLogger(__name__)
+        logger.info(f"[RabbitMQ:{exchange_name}] Received: {raw_body}")
 
         try:
             # Decode the message body and parse JSON
@@ -24,12 +26,12 @@ async def process_message(message: aio_pika.abc.AbstractIncomingMessage, exchang
 
             # Log the processed message ID or raise an error if the ID is not valid
             if success:
-                print("[RabbitMQ:{exchange_name}] Processed message successfully")
+                logger.info("[RabbitMQ:{exchange_name}] Processed message successfully")
             else:
-                print(f"[RabbitMQ:{exchange_name}] Process failed.")
+                logger.error(f"[RabbitMQ:{exchange_name}] Process failed.")
 
         except Exception as e:
-            print(f"[RabbitMQ:{exchange_name}] Failed to process message: {e}")
+            logger.error(f"[RabbitMQ:{exchange_name}] Failed to process message: {e}")
 
 async def update_message_status(data, exchange_name: str) -> int:
     """Update the status of a message based on the exchange name.

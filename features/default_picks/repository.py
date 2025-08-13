@@ -1,4 +1,5 @@
 import asyncpg
+import logging
 from core.database import get_db_config
 from features.default_picks.schemas import CreatedDefaultPick
 
@@ -12,9 +13,11 @@ async def add_created_default_pick(week: CreatedDefaultPick):
         or less then the operation failed
     """
     
-    config = get_db_config()
-    
+    logger = logging.getLogger(__name__)
+
     try:
+        config = get_db_config()
+    
         conn = await asyncpg.connect(**config)
 
         query = """
@@ -44,7 +47,7 @@ async def add_created_default_pick(week: CreatedDefaultPick):
         return row["created_default_pick_id"] if row else 0
 
     except Exception as e:
-        print(f"Error inserting default pick: {e}")
+        logger.exception(f"Error inserting default pick: {e}")
         return 0
 
 async def delete_default_pick(game_id: int, week_id: int):
@@ -89,9 +92,11 @@ async def get_default_pick(week_id: int):
         Returns a CreatedDefaultPick object if found, None otherwise
     """
     
-    config = get_db_config()
+    logger = logging.getLogger(__name__)
 
     try:
+        config = get_db_config()
+
         conn = await asyncpg.connect(**config)
 
         # Read the week by week_id
@@ -104,6 +109,6 @@ async def get_default_pick(week_id: int):
         return result if result else None
 
     except Exception as e:
-            print(f"An error occurred while reading default pick for week with id {week_id}: {e}")
-            return False
+        logger.exception(f"An error occurred while reading default pick for week with id {week_id}: {e}")
+        return False
  

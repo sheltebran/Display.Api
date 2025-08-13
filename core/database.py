@@ -1,3 +1,4 @@
+import logging
 import os
 import asyncpg
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
@@ -81,7 +82,8 @@ async def create_created_default_picks_table_if_not_exists():
         await conn.close()
 
     except Exception as e:
-        print(f"An error occurred while connecting to the database: {e}")
+        logger = logging.getLogger(__name__)
+        logger.error(f"An error occurred while connecting to the database: {e}")
 
 
 async def create_headlines_table_if_not_exists():
@@ -108,7 +110,8 @@ async def create_headlines_table_if_not_exists():
         await conn.close()
 
     except Exception as e:
-        print(f"An error occurred while connecting to the database: {e}")
+        logger = logging.getLogger(__name__)
+        logger.error(f"An error occurred while connecting to the database: {e}")
       
 
 async def create_created_weeks_table_if_not_exists() -> None:
@@ -137,7 +140,8 @@ async def create_created_weeks_table_if_not_exists() -> None:
         await conn.close()
 
     except Exception as e:
-        print(f"An error occurred while connecting to the database: {e}")
+        logger = logging.getLogger(__name__)
+        logger.error(f"An error occurred while connecting to the database: {e}")
 
 
 async def create_created_leagues_table_if_not_exists():
@@ -164,7 +168,8 @@ async def create_created_leagues_table_if_not_exists():
         await conn.close()
 
     except Exception as e:
-        print(f"An error occurred while connecting to the database: {e}")
+        logger = logging.getLogger(__name__)
+        logger.error(f"An error occurred while connecting to the database: {e}")
 
 
 async def create_created_user_teams_table_if_not_exists():
@@ -197,7 +202,8 @@ async def create_created_user_teams_table_if_not_exists():
         await conn.close()
 
     except Exception as e:
-        print(f"An error occurred while connecting to the database: {e}")
+        logger = logging.getLogger(__name__)
+        logger.error(f"An error occurred while connecting to the database: {e}")
 
 
 async def create_created_picks_table_if_not_exists():
@@ -226,7 +232,8 @@ async def create_created_picks_table_if_not_exists():
         await conn.close()
 
     except Exception as e:
-        print(f"An error occurred while creating created_picks table: {e}")
+        logger = logging.getLogger(__name__)
+        logger.error(f"An error occurred while creating created_picks table: {e}")
 
 
 async def create_created_pick_details_table_if_not_exists():
@@ -257,5 +264,6 @@ async def create_created_pick_details_table_if_not_exists():
         await conn.close()
 
     except Exception as e:
-        print(f"An error occurred while creating created_pick_details table: {e}")
+        logger = logging.getLogger(__name__)
+        logger.error(f"An error occurred while creating created_pick_details table: {e}")
 

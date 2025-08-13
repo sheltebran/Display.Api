@@ -67,8 +67,8 @@ async def test_add_headline_no_result(mocker):
     mock_conn.fetchrow = mock_fetchrow
     mock_conn.close = AsyncMock()
     
-    mock_connect = mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
-    mock_get_db_config = mocker.patch("features.headlines.repository.get_db_config", return_value={})
+    mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
+    mocker.patch("features.headlines.repository.get_db_config", return_value={})
     
     # Act
     result = await add_headline(TEST_HEADLINE_DATA, league_id)
@@ -84,8 +84,8 @@ async def test_add_headline_invalid_date_format(mocker):
     league_id = 1
     
     mock_conn = AsyncMock()
-    mock_connect = mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
-    mock_get_db_config = mocker.patch("features.headlines.repository.get_db_config", return_value={})
+    mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
+    mocker.patch("features.headlines.repository.get_db_config", return_value={})
     
     # Act
     result = await add_headline(TEST_HEADLINE_DATA_INVALID_DATE, league_id)
@@ -99,8 +99,8 @@ async def test_add_headline_database_exception(mocker):
     # Arrange
     league_id = 1
     
-    mock_connect = mocker.patch("features.headlines.repository.asyncpg.connect", side_effect=Exception("Database connection failed"))
-    mock_get_db_config = mocker.patch("features.headlines.repository.get_db_config", return_value={})
+    mocker.patch("features.headlines.repository.asyncpg.connect", side_effect=Exception("Database connection failed"))
+    mocker.patch("features.headlines.repository.get_db_config", return_value={})
     
     # Act
     result = await add_headline(TEST_HEADLINE_DATA, league_id)
@@ -143,8 +143,8 @@ async def test_delete_headlines_for_league_no_rows_deleted(mocker):
     mock_conn.execute = mock_execute
     mock_conn.close = AsyncMock()
     
-    mock_connect = mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
-    mock_get_db_config = mocker.patch("features.headlines.repository.get_db_config", return_value={})
+    mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
+    mocker.patch("features.headlines.repository.get_db_config", return_value={})
     
     # Act
     result = await delete_headlines_for_league(league_id)
@@ -163,8 +163,8 @@ async def test_delete_headlines_for_league_invalid_response(mocker):
     mock_conn.execute = mock_execute
     mock_conn.close = AsyncMock()
     
-    mock_connect = mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
-    mock_get_db_config = mocker.patch("features.headlines.repository.get_db_config", return_value={})
+    mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
+    mocker.patch("features.headlines.repository.get_db_config", return_value={})
     
     # Act
     result = await delete_headlines_for_league(league_id)
@@ -225,8 +225,8 @@ async def test_get_all_headlines_empty_result(mocker):
     mock_conn.fetch = mock_fetch
     mock_conn.close = AsyncMock()
     
-    mock_connect = mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
-    mock_get_db_config = mocker.patch("features.headlines.repository.get_db_config", return_value={})
+    mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
+    mocker.patch("features.headlines.repository.get_db_config", return_value={})
     
     # Act
     result = await get_all_headlines(league_id, limit)
@@ -247,8 +247,8 @@ async def test_get_all_headlines_none_result(mocker):
     mock_conn.fetch = mock_fetch
     mock_conn.close = AsyncMock()
     
-    mock_connect = mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
-    mock_get_db_config = mocker.patch("features.headlines.repository.get_db_config", return_value={})
+    mocker.patch("features.headlines.repository.asyncpg.connect", return_value=mock_conn)
+    mocker.patch("features.headlines.repository.get_db_config", return_value={})
     
     # Act
     result = await get_all_headlines(league_id, limit)
@@ -263,12 +263,12 @@ async def test_get_all_headlines_database_exception(mocker):
     league_id = 1
     limit = 10
     
-    mock_connect = mocker.patch("features.headlines.repository.asyncpg.connect", side_effect=Exception("Database error"))
-    mock_get_db_config = mocker.patch("features.headlines.repository.get_db_config", return_value={})
+    mocker.patch("features.headlines.repository.asyncpg.connect", side_effect=Exception("Database error"))
+    mocker.patch("features.headlines.repository.get_db_config", return_value={})
     
     # Act & Assert
     with pytest.raises(HTTPException) as exc_info:
         await get_all_headlines(league_id, limit)
     
     assert exc_info.value.status_code == 500
-    assert "An error occurred while writing" in str(exc_info.value.detail)
+    assert "An error occurred while retrieving" in str(exc_info.value.detail)
