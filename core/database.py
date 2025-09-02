@@ -1,7 +1,7 @@
 import logging
 import os
 import asyncpg
-from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+
 
 async def initialize_database():
     await create_database_if_not_exists()
@@ -21,7 +21,7 @@ def get_db_config():
     -------
     connection
         Service to enable processing of database calls
-    """    
+    """
 
     return {
         "host": "localhost",
@@ -87,7 +87,7 @@ async def create_created_default_picks_table_if_not_exists():
 
 
 async def create_headlines_table_if_not_exists():
-    """Create the headlines table""" 
+    """Create the headlines table"""
 
     config = get_db_config()
 
@@ -112,7 +112,7 @@ async def create_headlines_table_if_not_exists():
     except Exception as e:
         logger = logging.getLogger(__name__)
         logger.error(f"An error occurred while connecting to the database: {e}")
-      
+
 
 async def create_created_weeks_table_if_not_exists() -> None:
     """Create the created_weeks table"""
@@ -146,7 +146,7 @@ async def create_created_weeks_table_if_not_exists() -> None:
 
 async def create_created_leagues_table_if_not_exists():
     """Create the created_leagues table"""
-        
+
     config = get_db_config()
 
     try:
@@ -174,9 +174,9 @@ async def create_created_leagues_table_if_not_exists():
 
 async def create_created_user_teams_table_if_not_exists():
     """Create the created_user_teams table"""
-        
+
     config = get_db_config()
-    
+
     try:
         # Connect to the database
         conn = await asyncpg.connect(**config)
@@ -266,4 +266,3 @@ async def create_created_pick_details_table_if_not_exists():
     except Exception as e:
         logger = logging.getLogger(__name__)
         logger.error(f"An error occurred while creating created_pick_details table: {e}")
-

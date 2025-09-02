@@ -1,6 +1,9 @@
 from core.enums import CreatedStatus
 from features.leagues.mappings import map_to_created_league
-from features.leagues.repository import delete_league, add_created_league
+from features.leagues.repository import (
+    delete_league,
+    add_created_league
+)
 
 async def process_league_message(data):
     """Process a league message and delete the league if necessary.

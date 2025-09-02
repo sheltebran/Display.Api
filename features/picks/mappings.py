@@ -1,5 +1,8 @@
 from core.date_helpers import format_date
-from features.picks.schemas import CreatedPick, CreatedPickDetail
+from features.picks.schemas import (
+    CreatedPick,
+    CreatedPickDetail
+)
 from typing import List
 
 def map_to_created_pick(pick_data: dict) -> CreatedPick:

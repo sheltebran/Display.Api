@@ -1,4 +1,3 @@
-# SQLAlchemy or Pydantic models
 from dataclasses import dataclass
 from datetime import datetime
 

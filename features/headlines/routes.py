@@ -1,6 +1,4 @@
-# FastAPI APIRouter
 from fastapi import APIRouter, HTTPException
-from features.headlines.mappings import map_headline_to_dtos
 from features.headlines.services import (
     create_headlines_for_sport, 
     get_headlines_by_league

@@ -1,7 +1,10 @@
-# Pydantic request/response DTOs
 from dataclasses import dataclass
 from datetime import datetime
-from features.headlines.validators import is_greater_than_zero, is_not_null_or_empty, validate_datetime_string
+from features.headlines.validators import (
+    is_greater_than_zero,
+    is_not_null_or_empty,
+    validate_datetime_string
+)
 from pydantic import AfterValidator
 from typing import Annotated
 
